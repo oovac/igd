@@ -1,0 +1,150 @@
+% File: IGD_Axiomatic_Foundation_v2.2.tex
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{bbm}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+% We use English primarily as the document content is technical and established in English, 
+% but keep babel for compatibility if Ukrainian terms are added.
+\usepackage[english,ukrainian]{babel} 
+
+\title{Information--Geometric Dynamics (IGD)\\ \large Axiomatic Foundation v2.2 (Consolidated)}
+\author{Ordo Vacui \& Colleagues}
+\date{\today}
+
+% Define Theorems
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+\maketitle
+
+\section*{Abstract}
+We present the consolidated axiomatic foundation for Information--Geometric Dynamics (IGD) v2.2. The ontology is based on information, resources, and correlations, treating spacetime and fields as emergent. This version solidifies the quantum structure (A0) as ontological, introduces Axiom A10 requiring Kähler compatibility between information geometry and dynamics, clarifies the mechanism of emergent locality (A9), and reclassifies holographic/gravitational relations as Fundamental Theorems (T1, T2) to be derived from the axioms.
+
+\section{Primitives}
+
+\begin{itemize}
+  \item $\mathcal{S}$: set of physically admissible \emph{states}.
+  \item $\mathcal{H}$: Complex Hilbert space (justified by A0).
+  \item $\mathcal{M}_\theta$: Information manifold of models/focuses (parameters $\theta^i$).
+  \item $g, J, R, \mathcal{J}$: Geometric operators defining structure and dynamics on $\mathcal{M}_\theta$.
+\end{itemize}
+
+\section{Ontological Axioms (Facts about the World)}
+
+\begin{description}
+
+\item[A1 (States and events).]
+There exists a measurable space of states $(\mathcal{S},\mathcal{E})$. Physical preparations are probability measures on it.
+
+\item[A2 (Plausibility as probability).]
+Uncertainty is represented by real, normalized, additive plausibilities (Cox/Kolmogorov).
+
+\item[A3 (Composition and correlations).]
+Composite systems exist and admit marginalization. States may exhibit nontrivial correlations.
+
+\item[A4 (Resources and constraints).]
+Physical processes are constrained by limited resources (energy, computation, correlations), bounding admissible channels.
+
+\item[A5 (Processes as channels; Data Processing).]
+Any physical process is a channel $\Phi$. A suitable divergence $D$ satisfies the Data Processing Inequality (DPI):
+\begin{equation}
+  D\bigl(\Phi p \,\Vert\, \Phi q\bigr) \;\le\; D\bigl(p \,\Vert\, q\bigr).
+\end{equation}
+
+\item[A6 (Resource cost of logical irreversibility).]
+Logically irreversible transformations require minimal resource exchange (Landauer principle).
+
+\item[A7 (Computational boundedness).]
+Kolmogorov complexity $K$ is well-defined. Processes with complexity $K$ require resources growing at least as $f(K)$.
+
+\item[A0 (Quantum structure: reversibility, purification, local tomography).]
+\emph{(Consolidated)} The physical state space is fundamentally represented by a \textbf{complex} Hilbert space $\mathcal{H}$, satisfying:
+\begin{enumerate}
+  \item \textbf{A0.1. Continuous reversibility.} Between any two pure states there exists a continuous reversible transformation (unitary).
+  \item \textbf{A0.2. Purification.} Any mixed state can be realized as the marginal of a unique (up to local unitaries) global pure state.
+  \item \textbf{A0.3. Local tomography.} Composite states are fully characterized by local measurement statistics and their correlations.
+\end{enumerate}
+These ontological facts imply the standard quantum formalism, the existence of entanglement, and a fundamental complex structure $\mathcal{J}$.
+
+\end{description}
+
+\section{Epistemological and Geometric Axioms (Models and Emergence)}
+
+\begin{description}
+
+\item[A8 (Focus, modeling, and informational covariance).]
+A model is a focus map $\mathcal{F}_\theta:\mathcal{S}\to\mathcal{M}_\theta$. The manifold $\mathcal{M}_\theta$ carries a Riemannian information metric $g_{ij}(\theta)$ (Bures metric for quantum states).
+\textbf{Informational Covariance:} Physical laws (IGD equations) must be covariant under diffeomorphisms of $\mathcal{M}_\theta$.
+
+\item[A9 (Informational locality and emergent geometry).]
+\emph{(Consolidated)} The global Hilbert space factors as $\mathcal{H} \simeq \bigotimes_{i\in\mathcal{V}} \mathcal{H}_i$.
+Correlations define an informational adjacency graph $(\mathcal{V},w_{ij})$. We take \textbf{Mutual Information} $I(i:j)$ as the fundamental measure for $w_{ij}$.
+Fundamental dynamics generators ($J, R$) are \emph{quasi-local} on this graph, leading to finite propagation speeds (Lieb--Robinson bounds). Spacetime geometry emerges in the continuum/coarse-grained limit of this graph.
+
+\item[A10 (Geometric Compatibility / Kähler Structure).]
+\emph{(New)} The information metric $g$, the Poisson operator $J$ (generating reversible dynamics), and the complex structure $\mathcal{J}$ (from A0) must be compatible, forming a (generalized) Kähler structure. Specifically, $J$ is related to the symplectic form $\omega$ via $\omega(u,v) = g(\mathcal{J}u,v)$, and $g(\mathcal{J}u,\mathcal{J}v) = g(u,v)$.
+This ensures that reversible (unitary) dynamics is an isometric flow on the information manifold.
+
+\end{description}
+
+\section{Information Geometry and Dynamics (IGD)}
+
+The Bures metric $g^{\mathrm{B}}$ is the unique minimal monotone quantum metric.
+Information length:
+\begin{equation}
+  \ell[\theta] = \int d\tau\, \sqrt{\dot\theta^i g^{\mathrm{B}}_{ij}(\theta)\dot\theta^j}.
+\end{equation}
+
+\subsection*{IGD Equation (GENERIC Form)}
+Dynamics on $\mathcal{M}_\theta$ is governed by:
+\begin{equation}
+  \dot\theta = J(\theta)\,\nabla E(\theta) + R(\theta)\,\nabla S(\theta).
+  \label{eq:IGD-GENERIC}
+\end{equation}
+$E$ (energy), $S$ (entropy). $J$ (antisymmetric, reversible), $R$ (symmetric, positive semidefinite, dissipative).
+The structure $(g, J, R, \mathcal{J})$ must satisfy A10. Degeneracy conditions hold:
+\begin{equation}
+  J\nabla S = 0, \qquad R\nabla E = 0.
+\end{equation}
+Entropy production (Arrow of Time):
+\begin{equation}
+  \frac{dS}{d\tau} = \nabla S^\top R\,\nabla S \;\ge\; 0.
+\end{equation}
+
+\subsection*{Emergent time.}
+Physical time $t$ is parametrized by information length $d\ell$ with gauge $\lambda(\theta)>0$:
+$dt = \lambda(\theta)\, d\ell$.
+
+\section{Fundamental Theorems on Emergent Spacetime}
+
+We state the key expected consequences of Axioms A0--A10 in the thermodynamic/hydrodynamic limit. These are not axioms, but theorems to be proven within IGD.
+
+\begin{theorem}[T1: Holographic Bound / Area Law]
+In the regime where a stable spacetime geometry emerges (A9), the maximal information content (entropy) of a region is bounded by the area $A$ of its boundary, not its volume.
+\begin{equation}
+  S_{\mathrm{max}} \;\sim\; \frac{A}{4\,\ell_{\mathrm{Planck}}^2}.
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[T2: Gravitational Dynamics as Entanglement Thermodynamics]
+Changes in the entanglement entropy $\delta S$ across a local causal horizon are related to the energy flux $\delta Q$ via the entanglement first law $\delta Q = T\,\delta S$ (with local Unruh temperature $T$). Informational covariance (A8) applied to this relation implies that the emergent spacetime metric must satisfy Einstein's field equations (or generalizations thereof) in the semiclassical limit.
+\end{theorem}
+
+\section{Fundamental Relations (Catalog Sketch)}
+
+Core information-theoretic relations consistent with A0-A10.
+
+\begin{description}
+\item[F1 (von Neumann entropy).] $S(\rho) = -\mathrm{Tr}(\rho \log \rho)$.
+\item[F2 (Quantum relative entropy).] $D(\rho\Vert\sigma) = \mathrm{Tr}\bigl[\rho(\log\rho - \log\sigma)\bigr]$. Satisfies DPI (A5).
+\item[F3 (Mutual information).] $I(A:B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})$. Used in A9.
+\item[F4 (Bures metric and Fidelity).] Related to Uhlmann fidelity $F(\rho,\sigma)$. Defines $g$ in A8, A10.
+\item[F5 (Landauer bound).] Minimal work for erasure $W\ge k_B T\ln 2$. (A6).
+\end{description}
+
+\section*{Status and Research Program}
+The axiomatic base (A0-A10) and the dynamical law (IGD/GENERIC) provide a complete foundation. The main research program is: (1) Classify admissible geometric structures $(g,J,R,\mathcal{J})$ satisfying A9 and A10. (2) Rigorously prove Theorems T1 and T2, thereby deriving gravity from information geometry. (3) Verify recovery of the Standard Model and QFT in appropriate limits.
+
+\end{document}

@@ -1,0 +1,91 @@
+% File: IGD_SpinChain_Project_v1.1_Plan.tex
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english,ukrainian]{babel}
+
+\title{Project IGD--SpinChain v1.1: Concrete Plan}
+\author{Ordo Vacui \& Colleagues}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Goal}
+
+To demonstrate emergent geometry (A9) and the Area Law (T1 prototype) within the IGD framework using a solvable quantum spin chain model, realizing the axioms A9 and A10 explicitly.
+
+\section{Model Definition: Transverse Field Ising Model (TFIM)}
+
+We select the 1D TFIM on $N$ qubits ($\mathcal{H} = \bigotimes_{i=1}^N \mathbb{C}^2_i$):
+\begin{equation}
+  H = - J \sum_{i=1}^{N-1} \sigma^z_i \sigma^z_{i+1}
+      - h \sum_{i=1}^N \sigma^x_i.
+\end{equation}
+
+\subsection*{Regime and Parameters}
+
+We choose the \textbf{gapped phase} to ensure Area Law (T1) and locality (A9).
+\begin{itemize}
+  \item \textbf{Phase:} Ferromagnetic ($h < J$).
+  \item \textbf{Parameters:} $J=1$ (energy scale), $h=0.5$. (We avoid the critical point $h=1$).
+\end{itemize}
+
+\section{Focus Manifolds ($\mathcal{M}_\theta$)}
+
+We will utilize the exact solvability of the model via two complementary approaches:
+
+\begin{description}
+  \item[Focus 1: Gaussian Fermionic States (Analytical)]
+    \begin{itemize}
+      \item \textbf{Idea:} TFIM maps exactly to free fermions via Jordan-Wigner transformation. The ground state is a Gaussian state (Bogoliubov vacuum).
+      \item \textbf{Parameters $\theta$:} The fermionic covariance matrix.
+      \item \textbf{Advantage:} Allows for exact analytical calculation of information measures and the Bures metric.
+    \end{itemize}
+
+  \item[Focus 2: Matrix Product States (MPS) (Numerical/Variational)]
+    \begin{itemize}
+      \item \textbf{Idea:} MPS is the natural ansatz for 1D gapped systems and the basis for DMRG.
+      \item \textbf{Parameters $\theta$:} Elements of the MPS tensors with bounded bond dimension.
+      \item \textbf{Advantage:} Numerical verification and generalizability.
+    \end{itemize}
+\end{description}
+
+\section{Key Observables (IGD Realization)}
+
+\begin{itemize}
+  \item \textbf{A9 (Locality):} Information graph weights $w_{ij} \propto I(i:j)_\rho$. We must show exponential decay $I(i:j) \sim e^{-|i-j|/\xi}$.
+  \item \textbf{T1 (Area Law):} Entanglement entropy of a block $S(\ell)$. We must show saturation $S(\ell) \to \text{const}$ for $\ell \gg \xi$.
+  \item \textbf{A10 (Geometry):} Bures metric $g^{\mathrm{B}}$ on the chosen focus manifold $\mathcal{M}_\theta$.
+\end{itemize}
+
+\section{Work Plan and Task Division}
+
+\subsection*{Task 1: Analytics (Lead: Colleague)}
+
+Focus 1 (Gaussian States) will be used for analytical derivation.
+
+\begin{enumerate}
+  \item \textbf{Fermionization and Diagonalization:} Perform Jordan-Wigner transformation and Bogoliubov diagonalization to find the ground state covariance matrix.
+  \item \textbf{A9 Verification:} Analytically calculate the mutual information $I(i:j)$ and confirm exponential decay.
+  \item \textbf{T1 Verification:} Analytically calculate the block entropy $S(\ell)$ and confirm the Area Law saturation.
+  \item \textbf{A10 Realization:} Analytically derive the Bures metric on the manifold of Gaussian ground states. Determine the explicit form of the emergent 1D geometry.
+\end{enumerate}
+
+\subsection*{Task 2: Numerics (Lead: Ordo Vacui)}
+
+Focus 2 (MPS/DMRG) will be used for numerical verification.
+
+\begin{enumerate}
+  \item \textbf{Ground State Calculation:} Use DMRG/MPS algorithms to find the ground state for finite $N$ chains at $h=0.5$.
+  \item \textbf{Verification:} Numerically verify the analytical predictions for $I(i:j)$ and $S(\ell)$.
+  \item \textbf{Visualization:} Visualize the informational graph $w_{ij}$.
+\end{enumerate}
+
+\subsection*{Outcome}
+
+A complete "Proof of Concept" for the IGD framework, demonstrating the emergence of geometry and holographic properties from information principles in a concrete, solvable model.
+
+\end{document}

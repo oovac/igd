@@ -1,0 +1,179 @@
+
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{bbm}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english,ukrainian]{babel}
+
+\title{Information--Geometric Dynamics (IGD)\\ \large Axiomatic Foundation v2.0}
+\author{The Colleagues}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Abstract}
+We propose a revised axiomatic foundation for fundamental physics, termed Information-Geometric Dynamics (IGD). This framework strictly separates fundamental facts about information, inference, and resources (Ontological Axioms) from the mechanisms of modeling and the emergence of spacetime structure (Epistemological Axioms). By incorporating principles from quantum foundations (Continuous Reversibility, Purification, Local Tomography), we ensure a quantum structure. Dynamics are formulated as evolution on statistical manifolds equipped with the Bures metric, constrained by Informational Covariance. The GENERIC formalism unifies reversible kinematics (geodesics) and irreversible processes (gradient flows). We include axioms for emergent locality and holographic relations to provide a basis for spacetime and proto-gravity.
+
+\section{Axiomatic Base v2.0}
+
+We divide the axioms into two categories: Ontological (fundamental properties of the world/information) and Epistemological (how we model and perceive the structure).
+
+\subsection*{Ontological Axioms: Information, Inference, and Resources}
+
+\begin{description}
+
+\item[A0 (Quantum Structure: Reversibility, Purification, Tomography).]
+\textbf{(New/Refined)} The fundamental state space $\mathcal{S}$ and its composition obey:
+\begin{enumerate}
+    \item \textbf{Continuous Reversibility:} Between any two pure states, there exists a continuous, reversible transformation (Unitary evolution).
+    \item \textbf{Purification:} Any mixed state $\rho_A$ can be represented as the reduction of a pure state $|\Psi_{AB}\rangle$ in a larger system.
+    \item \textbf{Local Tomography:} The state of a composite system $A \otimes B$ is uniquely determined by the statistics of local measurements on its parts and their correlations.
+\end{enumerate}
+(These principles strongly imply the Hilbert space structure of Quantum Theory).
+
+\item[A1 (Distinguishability and Events).]
+There exists a set of states $\mathcal{S}$ (constrained by A0). At least two states are distinguishable. Events form a suitable algebraic structure (e.g., POVMs).
+
+\item[A2 (Plausibility as Probability).]
+Uncertainty over events is represented by a normalized, additive measure $P$. This induces the generalized probability calculus (e.g., Born rule).
+
+\item[A3 (Composition).] (Implicit in A0.3)
+For systems $A$ and $B$ there exists a composite system $A \otimes B$.
+
+\item[A4 (Entropy Functional).]
+On the states there exists a functional $S$ (von Neumann entropy) satisfying appropriate axioms (e.g., continuity, strong subadditivity).
+
+\item[A5 (Admissible Processes and Data Processing).]
+Any admissible process is a channel $\Phi$ (Completely Positive Trace-Preserving (CPTP) map) that contractively transforms the quantum relative entropy $D$:
+\[
+    D(\Phi \rho \parallel \Phi \sigma) \le D(\rho \parallel \sigma).
+\]
+This induces a causal partial order.
+
+\item[A6 (Resource Cost of Logical Irreversibility).]
+Any logically irreversible transformation requires a minimal exchange of resources with an environment (Landauer's principle).
+
+\item[A7 (Computational Boundedness).]
+There exists a universal computational representation and a corresponding (quantum) Kolmogorov complexity $K$, well defined up to an additive constant.
+
+\end{description}
+
+\subsection*{Epistemological Axioms: Models and Emergent Structure}
+
+\begin{description}
+
+\item[A8 (Focus, Modeling, and Informational Covariance).]
+A model is defined by a focus operator $\mathcal{F}_\theta$ projecting the full state onto a submanifold $\mathcal{M}_\theta$. This induces the information metric $g_{ij}(\theta)$ (Bures metric) on $\mathcal{M}_\theta$. \textbf{(Refined)} The fundamental equations of dynamics (IGD) must be covariant under diffeomorphisms of $\mathcal{M}_\theta$ (Informational Covariance).
+
+\item[A9 (Informational Locality and Emergent Geometry).]
+\textbf{(New)} The global state space $\mathcal{S}$ admits a decomposition into subsystems. Mutual information/entanglement defines a measure of proximity between them. Admissible dynamics (A5) respect this structure, leading to local interactions with a finite speed of information propagation. (This provides the basis for emergent spacetime).
+
+\end{description}
+
+\section{Fundamental Relations (Catalog v2.0)}
+
+We list the core relations that follow from A0--A9. We adopt the quantum formalism as fundamental (A0).
+
+\subsection*{Entropy, Information, and Geometry}
+
+\begin{description}
+
+\item[F1 (Von Neumann Entropy).]
+$S(\rho) = - k_B \mathrm{Tr}(\rho \ln \rho)$.
+
+\item[F2 (Quantum Mutual Information).]
+$I(A;B) = S(\rho_A) + S(\rho_B) - S(\rho_{AB}) \ge 0 .$
+
+\item[F3 (Data Processing Inequality).] (From A5)
+For any CPTP map $\Phi$, $I(\Phi(A);B) \le I(A;B) .$
+
+\item[F4 (Quantum Relative Entropy).]
+$D(\rho \parallel \sigma) = \mathrm{Tr}(\rho \ln \rho - \rho \ln \sigma) \ge 0 .$
+
+\item[F5 (Strong Subadditivity).]
+$S(\rho_{AB}) + S(\rho_{BC}) \ge S(\rho_B) + S(\rho_{ABC}) .$
+
+\item[F6 (Bures Information Metric).]
+The fundamental metric on the manifold of quantum states $\mathcal{M}$ is the Bures metric $g_{ij}(\theta)$, corresponding to the Quantum Fisher Information. It defines the statistical distinguishability:
+\[
+    D(\rho(\theta) \parallel \rho(\theta + d\theta))
+    \approx \tfrac{1}{2} d\theta^\top g(\theta) \, d\theta .
+\]
+
+\end{description}
+
+\subsection*{Thermodynamics and Resources}
+
+\begin{description}
+
+\item[F7 (Quantum Landauer Bound).] (From A6)
+Erasure of information $I$ at temperature $T$ requires minimal work: $W_{\min} \ge I \cdot k_B T$.
+
+\item[F8 (Entropy Production Rate).] (From A6)
+For an open system, the entropy production rate is non-negative (e.g., Spohn's inequality): $\sigma \ge 0$.
+
+\end{description}
+
+\subsection*{Quantum Structure (from A0)}
+\begin{description}
+\item[F9 (Unitary Evolution).]
+$i\hbar \frac{d}{dt}|\Psi\rangle = \hat{H}|\Psi\rangle$. (Reversible dynamics of pure states).
+\item[F10 (Entanglement Entropy Equality).] (From Purification)
+For a pure bipartite state $|\Psi_{AB}\rangle$, $S(\rho_A) = S(\rho_B)$.
+\end{description}
+
+
+\subsection*{Emergent Geometry and Holography (New)}
+
+\begin{description}
+
+\item[F11 (Holographic Bound / Bekenstein-Hawking).]
+The maximum entropy of a region bounded by area $A$ (defined via the emergent geometry from A9) is bounded:
+\[
+    S_{\max} \le \frac{A}{4 L_P^2}.
+\]
+
+\item[F12 (Entanglement-Geometry Connection, Ryu-Takayanagi analog).]
+The entanglement entropy of a region $A$ is related to the area of the minimal surface $\gamma_A$ anchored on its boundary in the emergent geometry: $S(A) \approx \text{Area}(\gamma_A)/(4G)$.
+
+\item[F13 (Thermodynamic Equation of State for Spacetime).]
+The dynamics of the emergent geometry (Gravity) arise from the relationship between energy flux $\delta Q$ across local causal horizons and the change in entanglement entropy $\delta S$ at the local Unruh temperature $T$:
+\[
+    \delta S = \frac{\delta Q}{T} \implies R_{\mu\nu} - \tfrac{1}{2} R g_{\mu\nu}^{\text{emergent}} = 8\pi G T_{\mu\nu}.
+\]
+
+\end{description}
+
+\section{Information-Geometric Dynamics (IGD)}
+
+Dynamics are formulated on the statistical manifold $\mathcal{M}$ parametrized by $\theta$.
+
+\subsection{Kinematics and Emergent Time}
+The information length $d\ell^2 = d\theta^\top g(\theta)\, d\theta$ (using the Bures metric F6) defines the natural distance. We define physical time $t$ via calibration:
+\begin{equation}
+dt = \lambda(\theta)\, d\ell.
+\end{equation}
+Time measures the accumulated statistical distinguishability. The arrow of time is fixed by $\sigma \ge 0$ (F8).
+
+Reversible kinematics correspond to geodesics (A0). When applied to the projective Hilbert space, this recovers unitary evolution (F9).
+
+\subsection{Equations of Motion: GENERIC Formalism}
+We postulate that the full dynamics (reversible and irreversible) are described by the GENERIC (General Equation for Non-Equilibrium Reversible-Irreversible Coupling) framework, driven by potentials $E(\theta)$ (energy-like) and $S(\theta)$ (entropy). This form is covariant (A8):
+\begin{equation}
+\dot\theta = J(\theta)\nabla E(\theta) + R(\theta)\nabla S(\theta).
+\label{eq:IGD-GENERIC}
+\end{equation}
+Here:
+\begin{itemize}
+    \item $J(\theta)$ (Poisson operator, $J^\top=-J$): Governs reversible (Hamiltonian/Unitary) dynamics.
+    \item $R(\theta)$ (Dissipative operator, $R^\top=R\succeq 0$): Governs irreversible (gradient flow/measurement/decoherence) dynamics.
+\end{itemize}
+The operators must satisfy degeneracy conditions ($J\nabla S=0$ and $R\nabla E=0$) ensuring energy conservation ($dE/dt=0$) and non-negative entropy production ($dS/dt=\nabla S^\top R\nabla S\ge 0$).
+
+\subsection{Interpretation}
+The IGD equation \eqref{eq:IGD-GENERIC} unifies quantum mechanics (when $R=0$), thermodynamics (when $J=0$), and open quantum systems. The irreversible term $R\nabla S$ naturally models the effects of focusing (A8) or interaction with the environment, consistent with A5.
+
+\end{document}

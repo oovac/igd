@@ -1,0 +1,105 @@
+% File: IGD_Spacetime_Theorems_v2.3_Program.tex
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english,ukrainian]{babel}
+
+\title{Spacetime and Complexity Theorems in IGD (v2.3)\\ \large Research Program and Strategies}
+\author{Ordo Vacui \& Colleagues}
+\date{\today}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+\maketitle
+
+\section*{Purpose}
+
+This document details the precise formulation, assumptions, and proposed proof strategies for the target theorems T1--T3 within the Information--Geometric Dynamics (IGD) framework (v2.3). These theorems aim to derive holography, gravity, and complexity relations from the foundational axioms A0--A10 and A7.
+
+\section{Assumptions and Regimes of Applicability}
+
+We assume the IGD axioms A0--A10 and the GENERIC dynamics. The theorems T1--T3 concern the emergence of smooth spacetime geometry and gravity, which requires specific physical regimes:
+
+\begin{description}
+  \item[RG-Flow and Infrared (IR) Limit.] The fundamental structure (UV) is the informational graph (A9). A smooth emergent geometry $(\mathcal{X},g_{\mu\nu})$ arises only in the IR limit after coarse-graining. T1--T3 describe the properties of this Renormalization Group (RG) flow.
+  \item[Energy Gap (for T1).] A strict Area Law requires an energy gap in the spectrum of the local IGD generators. This guarantees exponential decay of correlations (finite correlation length) and stability of the emergent local geometry (A9).
+  \item[Local Thermodynamic Equilibrium (LTE) (for T2).] The derivation of Einstein equations via entanglement arguments requires the state near local causal horizons to be close to local thermal equilibrium (e.g., a local Rindler vacuum).
+  \item[Maximal Chaos and Scrambling (for T3).] The Complexity-Geometry relation (T3) applies primarily to regimes exhibiting fast scrambling and saturating chaos bounds, characteristic of black-hole-like systems.
+\end{description}
+
+\section{T1: Holographic Area Law}
+
+\begin{theorem}[T1: Holographic / Area Law (Programmatic)]
+Under the assumptions above (specifically RG-flow to IR and Energy Gap), the entanglement entropy $S(\mathcal{R})$ of a region $\mathcal{R}$ in the emergent geometry for low-energy IGD states satisfies
+\begin{equation}
+  S(\mathcal{R})
+  =
+  \alpha\, \frac{A(\partial\mathcal{R})}{4\,\ell_{\mathrm{P}}^2}
+  + \mathcal{O}_{\mathrm{subleading}}.
+\end{equation}
+\end{theorem}
+
+\subsection*{Proposed Strategy and Models}
+
+\begin{itemize}
+  \item \textbf{Models:} Random Tensor Networks (RTN) and MERA. These models directly implement A9 and the holographic RG flow.
+  \item \textbf{Strategy:}
+    \begin{enumerate}
+      \item Use \textbf{Lieb--Robinson bounds} to formally establish the locality of IGD generators on the informational graph (A9).
+      \item Employ \textbf{Approximate Ground State Projectors (AGSP)} techniques to rigorously prove the Area Law for gapped systems, connecting the gap to the finite correlation length.
+    \end{enumerate}
+\end{itemize}
+
+\section{T2: Einstein Equations as an Entanglement Equation of State}
+
+\begin{theorem}[T2: Einstein-Type Field Equations (Programmatic)]
+Under the assumptions above (specifically LTE near horizons), if the Entanglement First Law holds for all local causal horizons, the emergent metric $g_{\mu\nu}$ satisfies semiclassical Einstein-type field equations:
+\begin{equation}
+  G_{\mu\nu} + \Lambda g_{\mu\nu}
+  =
+  8\pi G_{\mathrm{eff}}\, T_{\mu\nu}.
+\end{equation}
+\end{theorem}
+
+\subsection*{Proposed Strategy and Models}
+
+\begin{itemize}
+  \item \textbf{Models:} Holographic Codes and systems admitting a CFT description.
+  \item \textbf{Strategy (Modular Hamiltonian):}
+    \begin{enumerate}
+      \item Utilize the exact quantum information identity (Entanglement First Law):
+        \begin{equation}
+          \delta S = \delta \langle K \rangle,
+        \end{equation}
+        where $K$ is the \textbf{Modular Hamiltonian} of the region.
+      \item Prove that in the semiclassical limit and under LTE conditions, the flow of the expectation value of the Modular Hamiltonian $\delta \langle K \rangle$ corresponds to the geometric energy flux $\delta Q$ (refining Jacobson's argument).
+    \end{enumerate}
+\end{itemize}
+
+\section{T3: Computational Complexity and Geometry}
+
+\begin{theorem}[T3: Complexity--Geometry Relation (Programmatic)]
+Under the assumptions above (specifically Maximal Chaos), the computational complexity $C[\rho(t)]$ (consistent with A7) of a strongly gravitating IGD state is related to a geometric functional $\mathcal{C}_{\mathrm{geom}}[g_{\mu\nu}(t)]$ (e.g., volume or action):
+\begin{equation}
+  C[\rho(t)] \;\approx\;
+  \gamma\, \mathcal{C}_{\mathrm{geom}}[g_{\mu\nu}(t)].
+\end{equation}
+\end{theorem}
+
+\subsection*{Proposed Strategy and Models}
+
+\begin{itemize}
+  \item \textbf{Models:} Sachdev-Ye-Kitaev (SYK) model and Random Quantum Circuits (RQC).
+  \item \textbf{Strategy (Nielsen Geometry):}
+    \begin{enumerate}
+      \item Utilize \textbf{Nielsen's geometric approach} to complexity (geodesic distance in the space of unitaries).
+      \item Show that this approach naturally aligns with the Information Geometry (K\"ahler structure, A10) of IGD.
+      \item Demonstrate how the geometry of the operator space (complexity geometry) maps onto the emergent spacetime geometry (A9) in maximally chaotic systems.
+    \end{enumerate}
+\end{itemize}
+
+\end{document}

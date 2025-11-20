@@ -1,0 +1,123 @@
+
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{bbm}
+
+\title{Information--Geometric Dynamics (IGD)\\ \large Axiomatic Base v1.0}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Abstract}
+We formalize a base for fundamental physics as dynamics on statistical state manifolds equipped with Fisher information geometry, constrained by data processing monotonicity and thermodynamic irreversibility. The framework unifies causality (as a partial order induced by channels), an entropic arrow of time (Landauer + entropy production), and geodesic kinematics in information geometry. We state axioms, core relations, and the resulting equations of motion (IGD), with consistency checks to classical, quantum, and thermodynamic limits.
+
+\section{Primitives and Axioms}
+Let $\mathcal{S}$ be a set of microstates with a $\sigma$-algebra of events. States of knowledge about $\mathcal{S}$ are probability laws $p\in\Delta(\mathcal{S})$ (classical) or density operators $\rho$ on a Hilbert space (quantum). A parametric statistical manifold $\mathcal{M}=\{p(x\mid\theta)\}$ (or $\{\rho(\theta)\}$) is endowed with Fisher information geometry.
+
+\subsection*{Axioms (A1--A8)}
+\begin{description}
+\item[A1 (Distinguishability and events).] There exist at least two distinguishable states; events form a $\sigma$-algebra.
+\item[A2 (Plausibility as probability).] Uncertainty is represented by a real, normalized, additive measure $P$; standard probability calculus holds.
+\item[A3 (Composition).] Composite systems $A\otimes B$ exist; independence factorizes distributions.
+\item[A4 (Entropy functional).] A functional $H$ satisfies Shannon--Khinchin axioms.
+\item[A5 (Admissible processes).] Any process is a (classical/quantum) channel $\Phi$ contracting a divergence $D$: $D(\Phi p\|\Phi q)\le D(p\|q)$.
+\item[A6 (Cost of logical irreversibility).] Logically irreversible maps require minimal resource exchange (thermodynamic realizations obey Landauer bounds).
+\item[A7 (Computational boundedness).] Kolmogorov complexity $K(x)$ is well-defined up to an additive constant; incompressible strings exist.
+\item[A8 (Focus as projection).] Model selection/projection operators $\mathcal{F}_\theta$ obey data processing and admit an information-geometric description via Fisher metric.
+\end{description}
+
+\section{Core Relations Used}
+We rely on the following universal relations (all consistent with A1--A8):
+\begin{align}
+&\text{Shannon entropy: } H(p)=-\sum_i p_i\log p_i. \tag{F1}\\
+&\text{Mutual information: } I(X;Y)=H(X)+H(Y)-H(X,Y)\ge 0. \tag{F4}\\
+&\text{Data Processing (MI): } I(\Phi(X);Y)\le I(X;Y). \tag{F5}\\
+&\text{KL divergence: } D_{\mathrm{KL}}(p\|q)=\sum_i p_i\log\frac{p_i}{q_i}\ge 0. \tag{F6}\\
+&\text{KL contraction: } D_{\mathrm{KL}}(\Phi p\|\Phi q)\le D_{\mathrm{KL}}(p\|q). \tag{F7}\\
+&\text{Strong subadditivity: } H(X,Y)+H(Y,Z)\ge H(Y)+H(X,Y,Z). \tag{F8}\\
+&\text{Fisher metric: } g_{ij}=\mathbb{E}[\partial_i\log p\,\partial_j\log p]\succeq 0;~ D(P_\theta\|P_{\theta+d\theta})\approx \tfrac12 d\theta^\top g\, d\theta. \tag{F9}\\
+&\text{Landauer: } \Delta S_{\text{env}}\ge \mathrm{bits}\cdot k_B\ln2,\quad W_{\min}\ge \mathrm{bits}\cdot k_BT\ln2. \tag{F12}\\
+&\text{Entropy production: } \sigma=\dot S_{\text{sys}}+\dot S_{\text{env}}\ge 0. \tag{F13}
+\end{align}
+
+\section{Information Geometry and Kinematics}
+Let $\theta(\tau)$ be a curve on $\mathcal{M}$; define the information length $d\ell^2 = d\theta^\top g(\theta)\, d\theta$. The \emph{information action}
+\begin{equation}
+\mathcal{A}[\theta]=\int \frac{1}{2}\dot\theta^i g_{ij}(\theta)\dot\theta^j\, d\tau
+\end{equation}
+yields, by stationarity, geodesic equations
+\begin{equation}
+\ddot\theta^i + \Gamma^i_{jk}(\theta)\dot\theta^j\dot\theta^k = 0,
+\end{equation}
+where $\Gamma$ is the Levi--Civita connection of $g$. This encodes inertial (reversible) kinematics in information space.
+
+\section{Causality and Arrow of Time}
+\subsection*{Causal order (DPI)}
+Define $A \preceq B$ if $\exists$ channel $\Phi$ with $B=\Phi(A)$. Then for all observables $Y$,
+$I(B;Y)\le I(A;Y)$ (F5). This partial order induces a \emph{causal orientation}.
+
+\subsection*{Entropic arrow (Landauer + F13)}
+Logical irreversibility entails minimal entropy export (F12), and $\sigma\ge 0$ (F13). Therefore there exists a monotone parametrization $t$ with $dS/dt\ge 0$ along admissible evolutions.
+
+\section{Equations of Motion: IGD}
+We postulate dynamics as the sum of geodesic (reversible) and gradient (dissipative) parts. Two equivalent forms are convenient.
+
+\subsection*{(A) Geodesic + gradient form}
+\begin{equation}
+g_{ij}\frac{d^2\theta^j}{dt^2}+\Gamma_{ijk}\frac{d\theta^j}{dt}\frac{d\theta^k}{dt} = \mathcal{M}_{ij}(\theta)\,\partial^j S(\theta),
+\label{eq:IGD-geodesic-gradient}
+\end{equation}
+with a positive semidefinite mobility tensor $\mathcal{M}(\theta)\succeq 0$ ensuring $dS/dt \ge 0$. The left-hand side is pure kinematics; the right-hand side drives entropy increase in open systems.
+
+\subsection*{(B) GENERIC form}
+Alternatively, for suitable potentials $E(\theta)$ (energy-like) and $S(\theta)$ (entropy),
+\begin{equation}
+\dot\theta = J(\theta)\nabla E(\theta) + R(\theta)\nabla S(\theta),
+\label{eq:IGD-GENERIC}
+\end{equation}
+with $J^\top=-J$ (Poisson) and $R^\top=R\succeq 0$ (dissipative), subject to degeneracy conditions $J\nabla S=0$ and $R\nabla E=0$. Then $dE/dt=0$ and $dS/dt=\nabla S^\top R\nabla S\ge 0$. Equation \eqref{eq:IGD-GENERIC} reduces to Hamiltonian mechanics for $R=0$ and to Onsager gradient flows for $J=0$.
+
+\section{Emergent Time Calibration}
+Define physical time as information length with gauge:
+\begin{equation}
+dt = \lambda(\theta)\, d\ell,\qquad d\ell^2 = d\theta^\top g(\theta)\, d\theta.
+\end{equation}
+Choosing $\lambda$ constant makes constant-speed geodesics correspond to uniform time; more generally, $\lambda$ can encode clock conventions. The arrow $dS/dt\ge 0$ fixes orientation.
+
+\section{Symmetry and Conservation (Noether-type)}
+If a vector field $k$ generates an isometry of $g$ and leaves $S$ (and $E$ in GENERIC) invariant, then the current
+\begin{equation}
+J_k = g_{ij} \dot\theta^i k^j
+\end{equation}
+is conserved along solutions of the reversible part. This recovers conservation laws from continuous symmetries of the information geometry (and potentials).
+
+\section{Examples}
+\subsection*{Canonical ensemble cooling}
+For $p(x\mid\beta)\propto e^{-\beta E(x)}$ with heat capacity $C$, the Fisher metric along $\beta$ obeys $g(\beta)=\mathrm{Var}(E)=k_B T^2 C$. Then
+\begin{equation}
+\frac{d\ell}{dt} = \sqrt{\frac{C}{k_B}}\frac{|\dot T|}{T},\qquad
+\ell(T_1\to T_2)=\sqrt{\frac{C}{k_B}}\Big|\ln\frac{T_2}{T_1}\Big|.
+\end{equation}
+Thus information length depends on the ratio of temperatures and is linear in physical time for exponential relaxations.
+
+\subsection*{Diffusion as gradient flow}
+On a flat statistical manifold for densities $\rho(x,t)$ with Wasserstein/Fisher structure, the Fokker--Planck equation
+\begin{equation}
+\partial_t \rho = \nabla\cdot\big(\rho \nabla \frac{\delta \mathcal{F}}{\delta \rho}\big)
+\end{equation}
+is a gradient flow of a free-energy functional $\mathcal{F}$; this fits \eqref{eq:IGD-geodesic-gradient} with $\mathcal{M}$ as a mobility operator and $S$ as minus $\mathcal{F}$.
+
+\section{Consistency Checks}
+\paragraph{Classical limit.} With coordinates $\theta=(q,p)$, a symplectic $J$ and $R=0$, \eqref{eq:IGD-GENERIC} yields Hamilton's equations. 
+\paragraph{Quantum limit.} On the projective Hilbert space with the Fubini--Study/Bures metric, unitary dynamics is geodesic; CPTP noise implements $R\nabla S$-like contraction, consistent with data processing.
+\paragraph{Relativistic kinematics.} If the effective information metric on macroscopic variables attains Lorentzian signature, geodesics recover inertial motion in spacetime; the emergence of the signature is a model-dependent hypothesis compatible with the framework.
+
+\section{Predictions/Tests (Programmatic)}
+(1) Monotone decrease of suitable divergences (KL or quantum relative entropy) under coarse-grained evolution; (2) Information length $\ell$ proportional to operational time in near-equilibrium transport; (3) No free creation of correlations without resource cost (Landauer-consistent bounds).
+
+\section*{Status}
+The IGD equations \eqref{eq:IGD-geodesic-gradient} and \eqref{eq:IGD-GENERIC}, together with A1--A8 and (F1, F4--F9, F12--F13), form a coherent base. Open tasks: full derivations for specific field theories; emergent spacetime construction; classification of admissible $\lambda(\theta)$ gauges for time.
+
+\end{document}

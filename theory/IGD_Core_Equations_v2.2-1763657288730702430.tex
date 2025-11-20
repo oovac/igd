@@ -1,0 +1,78 @@
+% File: IGD_Core_Equations_v2.2.tex
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[english,ukrainian]{babel}
+
+\title{Information--Geometric Dynamics (IGD)\\ \large Core Equations v2.2 (Consolidated)}
+\author{Ordo Vacui \& Colleagues}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{Core Structures}
+
+Information manifold $\mathcal{M}_\theta$ endowed with:
+\begin{itemize}
+  \item $g_{ij}(\theta)$: Riemannian metric (Bures).
+  \item $\mathcal{J}$: Complex structure (from A0).
+  \item $J(\theta)$: Poisson operator (antisymmetric).
+  \item $R(\theta)$: Dissipative operator (symmetric, positive semidefinite).
+  \item $E(\theta)$ (Energy functional), $S(\theta)$ (Entropy functional).
+\end{itemize}
+
+\section*{IGD Equation (GENERIC Form)}
+
+The evolution of the macrostate $\theta(\tau)$ is:
+\begin{equation}
+  \dot\theta = J(\theta)\,\nabla E(\theta) + R(\theta)\,\nabla S(\theta).
+  \label{eq:IGD}
+\end{equation}
+
+\subsection*{Constraints and Conditions}
+
+\begin{enumerate}
+  \item \textbf{Degeneracy (Conservation Laws):}
+    \begin{equation}
+      J(\theta)\,\nabla S(\theta) = 0, \qquad
+      R(\theta)\,\nabla E(\theta) = 0.
+    \end{equation}
+
+  \item \textbf{Entropy Production (Arrow of time):}
+    \begin{equation}
+      \frac{dS}{d\tau} = \nabla S^\top R(\theta)\,\nabla S \;\ge\; 0.
+    \end{equation}
+
+  \item \textbf{A10: Geometric (Kähler) Compatibility:}
+    The quadruple $(g, \mathcal{J}, J, R)$ forms a compatible geometric structure. The metric and complex structure satisfy $g(\mathcal{J}u,\mathcal{J}v) = g(u,v)$. The symplectic form $\omega$ (associated with $J$) is given by:
+    \begin{equation}
+      \omega(u,v) = g(\mathcal{J}u,v).
+    \end{equation}
+    This ensures that the $J$-flow (reversible dynamics) is isometric. (Compatibility constraints on $R$ are an active area of research).
+
+  \item \textbf{A9: Informational Locality:}
+    The operators $J$ and $R$ must be quasi-local with respect to the informational adjacency graph defined by Mutual Information $I(i:j)$ between subsystems. This implies finite propagation speeds (Lieb-Robinson bounds).
+\end{enumerate}
+
+\section*{Emergent Time}
+
+Information line element (Bures metric): $d\ell^2 = g_{ij}(\theta)\, d\theta^i d\theta^j$.
+Physical time $t$ is parametrized (up to gauge $\lambda>0$):
+\begin{equation}
+  dt = \lambda(\theta)\, d\ell.
+\end{equation}
+
+\section*{Quantum Realization (Schematic)}
+
+For a quantum system $(\rho, H)$: $E(\rho)=\mathrm{Tr}(\rho H)$, $S(\rho)=-\mathrm{Tr}(\rho\log\rho)$.
+The IGD equation \eqref{eq:IGD}, constrained by A10 and A9, must reproduce generalized quantum dynamics.
+
+\begin{align}
+  \dot\rho_{\mathrm{rev}} &= -\frac{i}{\hbar}[H,\rho] && (\text{from } J\nabla E, \text{ constrained by A10})\\
+  \dot\rho_{\mathrm{diss}} &= \mathcal{L}_{\mathrm{diss}}(\rho) && (\text{from } R\nabla S, \text{ e.g., Lindblad form})
+\end{align}
+
+\end{document}

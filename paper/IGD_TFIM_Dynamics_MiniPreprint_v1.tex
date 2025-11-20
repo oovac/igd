@@ -1,0 +1,111 @@
+
+\documentclass[12pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+
+\title{Unitary Information Spreading in the TFIM:\\
+a Time-Dependent IGD Demonstration}
+\author{Ordo Vacui \\ IGD--TFIM Demo}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study unitary information spreading in the transverse-field Ising model
+(TFIM) in its gapped ferromagnetic phase ($J=1$, $h=0.5$) on a small chain
+($N=8$) using exact diagonalization. Starting from a simple product state,
+we compute the entanglement growth of a half-chain and the two-site mutual
+information $I(i{:}j,t)$ as a function of time. The resulting ``information
+light-cones'' provide a concrete illustration of the IGD concepts of
+informational locality (A9) and information velocity $v_{\mathrm{IGD}}$.
+\end{abstract}
+
+\section*{Setup}
+
+We consider the TFIM Hamiltonian
+\begin{equation}
+  H = - J \sum_i \sigma^z_i \sigma^z_{i+1} - h \sum_i \sigma^x_i
+\end{equation}
+with $J=1$, $h=0.5$ and open boundary conditions for a chain of $N=8$ sites.
+We perform exact diagonalization, obtaining eigenvalues $E_k$ and eigenvectors
+$|E_k\rangle$. As an initial state we choose the $\sigma^z$-polarized product
+state
+\begin{equation}
+  |\psi_0\rangle = |\uparrow\uparrow\cdots\uparrow\rangle_z,
+\end{equation}
+which is not an eigenstate of $H$. The time evolution is
+\begin{equation}
+  |\psi(t)\rangle = e^{-iHt} |\psi_0\rangle = \sum_k c_k e^{-iE_k t} |E_k\rangle,
+\end{equation}
+where $c_k = \langle E_k|\psi_0\rangle$.
+
+For each time $t$ on a grid $t\in[0,t_\mathrm{max}]$ we compute:
+
+\begin{itemize}
+  \item the reduced density matrix of the first half-chain and its entropy
+        $S_A(t)$ (in bits);
+  \item the two-site mutual information $I(i{:}j,t)$ and its average
+        $I(d,t)$ over pairs with fixed distance $d=|i-j|$.
+\end{itemize}
+
+\section*{Results}
+
+Figure~\ref{fig:half_entropy} shows the growth of half-chain entanglement
+entropy $S_A(t)$ (in bits). Starting from zero at $t=0$, $S_A(t)$ increases
+approximately linearly at early times and then bends towards a saturation
+plateau set by the finite system size.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{TFIM_Tevo_HalfEntropy_N8.png}
+  \caption{Half-chain entanglement entropy $S_A(t)$ (in bits) for the
+  TFIM with $N=8$, $J=1$, $h=0.5$, starting from the product state
+  $|\uparrow\cdots\uparrow\rangle_z$.}
+  \label{fig:half_entropy}
+\end{figure}
+
+Figure~\ref{fig:mi_heatmap} displays a heat map of $I(d,t)$ (in bits) as a
+function of time $t$ and distance $d$. One clearly observes an information
+light-cone: for each fixed distance, $I(d,t)$ remains close to zero up to a
+characteristic time $t \sim d/v_\mathrm{eff}$, then increases and
+eventually oscillates and saturates due to finite-size effects.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{TFIM_Tevo_MI_Heatmap_N8.png}
+  \caption{Heat map of the average two-site mutual information $I(d,t)$
+  (in bits) vs time $t$ and lattice distance $d$ for the TFIM with $N=8$,
+  $J=1$, $h=0.5$, starting from the product state
+  $|\uparrow\cdots\uparrow\rangle_z$. An information light-cone structure
+  is visible.}
+  \label{fig:mi_heatmap}
+\end{figure}
+
+The apparent front is compatible with an effective information velocity
+$v_\mathrm{eff}$ of order unity, consistent with the analytic IGD prediction
+$v_\mathrm{IGD} = v_\mathrm{max} = 1$ for this parameter regime. A more
+precise determination of $v_\mathrm{eff}$ requires larger systems and
+matrix-product-state methods, but the qualitative behaviour is already clear
+in this small-scale demonstration.
+
+\section*{IGD interpretation}
+
+Together with the static study of $I(d)$ in the ground state, these results
+provide a fully explicit IGD example:
+
+\begin{itemize}
+  \item Informational locality (A9) appears as exponential decay of
+        correlations with a finite $\xi = 1/\ln 2$.
+  \item A finite information velocity $v_\mathrm{IGD}$ controls the spread
+        of correlations and mutual information, giving rise to an emergent
+        light-cone structure.
+  \item The half-chain entropy $S_A(t)$ measures how the IGD trajectory
+        explores more entangled regions of the focus manifold.
+\end{itemize}
+
+\end{document}
