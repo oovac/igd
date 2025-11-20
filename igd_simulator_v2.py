@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
+"""
+IGD simulator v2: unified CLI for TFIM, CFT and SYK-like toy models.
 
+Usage examples:
+  python igd_simulator_v2.py --model tfim --mode both
+  python igd_simulator_v2.py --model cft  --mode both
+  python igd_simulator_v2.py --model syk  --mode dynamic
+"""
 import argparse
 from pathlib import Path
 
@@ -20,7 +27,10 @@ def run_tfim(args):
     H = tfim.tfim_hamiltonian(N, J, h)
     E0, psi_gs, eigvals, eigvecs = tfim.ground_state(H)
     eigvals_sorted = np.sort(eigvals.real)
-    gap = float(eigvals_sorted[1] - eigvals_sorted[0]) if len(eigvals_sorted) > 1 else 0.0
+    if len(eigvals_sorted) > 1:
+        gap = float(eigvals_sorted[1] - eigvals_sorted[0])
+    else:
+        gap = 0.0
 
     # Theoretical IGD length/velocity for TFIM
     if J > 0 and h > 0:
@@ -35,12 +45,18 @@ def run_tfim(args):
     print(f"[IGD-TFIM] ξ_IGD (theory) ≈ {xi_theory:.4f}")
     print(f"[IGD-TFIM] v_IGD (theory) ≈ {v_igd:.4f}")
 
-    # Static IGD observables: mutual information vs distance
+    # Static IGD observables: mutual information vs distance + block entropies
     if args.mode in ("static", "both"):
         d, I_d_bits, _E0 = tfim.run_static(N=N, J=J, h=h, fig_dir=str(fig_dir), prefix="TFIM")
         print("[IGD-TFIM] Static mutual information I(d) [bits]:")
         for dist, Ival in zip(d, I_d_bits):
             print(f"  d={int(dist)}: I ≈ {Ival:.4e}")
+
+        ells, S_bits, _E0 = tfim.plot_block_entropies(N=N, J=J, h=h, fig_dir=str(fig_dir), prefix="TFIM")
+        print("[IGD-TFIM] Ground-state block entropies S(ell) [bits]:")
+        for ell, Sval in zip(ells, S_bits):
+            print(f"  ell={int(ell)}: S ≈ {Sval:.4e}")
+        print("[IGD-TFIM] Block entropy plot saved in figures/")
 
     # Dynamic IGD observables: entanglement and I(d,t)
     if args.mode in ("dynamic", "both"):

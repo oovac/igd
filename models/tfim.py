@@ -134,6 +134,46 @@ def mi_distance_vs_time(states, N):
         I_dt[mask, ti] /= counts[mask]
     return d_vals, I_dt
 
+def block_entropies_ground_state(N=8, J=1.0, h=0.5):
+    """
+    Compute block entropies S(ell) [bits] for ell = 1..N//2
+    in the ground state of the TFIM with parameters (N, J, h).
+    The block is taken as the contiguous set of sites {0, ..., ell-1}.
+    Returns (ells, S_bits, E0).
+    """
+    H = tfim_hamiltonian(N, J, h)
+    E0, psi_gs, eigvals, eigvecs = ground_state(H)
+    ells = []
+    S_bits = []
+    for ell in range(1, N // 2 + 1):
+        subsystem = list(range(ell))
+        rho_block = reduced_density_matrix(psi_gs, N, subsystem)
+        S_nats = von_neumann_entropy(rho_block)
+        S_bits.append(S_nats / np.log(2.0))
+        ells.append(ell)
+    return np.array(ells), np.array(S_bits), E0
+
+
+def plot_block_entropies(N=8, J=1.0, h=0.5, fig_dir="figures", prefix="TFIM"):
+    """
+    Compute and plot block entropies S(ell) [bits] for the TFIM ground state.
+    Saves a PNG figure and returns (ells, S_bits, E0).
+    """
+    from pathlib import Path
+    ells, S_bits, E0 = block_entropies_ground_state(N=N, J=J, h=h)
+    fig_dir = Path(fig_dir)
+    fig_dir.mkdir(parents=True, exist_ok=True)
+    plt.figure()
+    plt.plot(ells, S_bits, 'o-')
+    plt.xlabel('Block length ell')
+    plt.ylabel('Entanglement entropy S(ell) [bits]')
+    plt.title(f'TFIM ground state, N={N}, J={J}, h={h}')
+    plt.tight_layout()
+    out = fig_dir / f"{prefix}_BlockEntropy_N{N}.png"
+    plt.savefig(out)
+    plt.close()
+    return ells, S_bits, E0
+
 def run_static(N=8, J=1.0, h=0.5, fig_dir="figures", prefix="TFIM"):
     """Compute ground-state I(d) and save a plot."""
     H = tfim_hamiltonian(N, J, h)
