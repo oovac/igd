@@ -190,7 +190,7 @@ def run_static(N=8, J=1.0, h=0.5, fig_dir="figures", prefix="TFIM"):
     plt.ylabel('Mutual information I(d) [bits]')
     plt.title(f'TFIM ground state, N={{N}}, J={{J}}, h={{h}}')
     plt.tight_layout()
-    out = fig_dir / f"{{prefix}}_MI_distance_N{{N}}.png"
+    out = fig_dir / f"{prefix}_MI_distance_N{N}.png"
     plt.savefig(out)
     plt.close()
     return d, I_d_bits, E0
@@ -215,7 +215,7 @@ def run_dynamic(N=8, J=1.0, h=0.5, t_max=6.0, num_t=60, fig_dir="figures", prefi
     plt.ylabel('Half-chain entropy S_A(t) [bits]')
     plt.title(f'TFIM N={{N}}, J={{J}}, h={{h}}: half-chain entanglement')
     plt.tight_layout()
-    out_ent = fig_dir / f"{{prefix}}_Tevo_HalfEntropy_N{{N}}.png"
+    out_ent = fig_dir / f"{prefix}_Tevo_HalfEntropy_N{N}.png"
     plt.savefig(out_ent)
     plt.close()
     # MI heatmap
@@ -227,7 +227,7 @@ def run_dynamic(N=8, J=1.0, h=0.5, t_max=6.0, num_t=60, fig_dir="figures", prefi
     plt.title(f'TFIM N={{N}}, J={{J}}, h={{h}}: I(d,t) [bits]')
     plt.colorbar(label='I(d,t) [bits]')
     plt.tight_layout()
-    out_mi = fig_dir / f"{{prefix}}_Tevo_MI_Heatmap_N{{N}}.png"
+    out_mi = fig_dir / f"{prefix}_Tevo_MI_Heatmap_N{N}.png"
     plt.savefig(out_mi)
     plt.close()
     return times, S_half_t_bits, d_vals, I_dt_bits

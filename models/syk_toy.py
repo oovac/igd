@@ -79,7 +79,7 @@ def run_dynamic(Nq=6, t_max=10.0, num_t=80, fig_dir="figures", prefix="SYK_Toy",
     plt.ylabel('Half-system entropy S_A(t) [bits]')
     plt.title(f'SYK-like toy (Nq={{Nq}} qubits): entanglement growth')
     plt.tight_layout()
-    out = fig_dir / f"{{prefix}}_HalfEntropy_Nq{{Nq}}.png"
+    out = fig_dir / f"{prefix}_HalfEntropy_Nq{Nq}.png"
     plt.savefig(out)
     plt.close()
     return times, S_half_t_bits
