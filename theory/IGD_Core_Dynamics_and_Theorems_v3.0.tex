@@ -1,0 +1,325 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% Shared notation and symbols
+\input{IGD_Notation_v1}
+
+\title{Information--Geometric Dynamics:\\
+Core Equation and Spacetime Theorems (v3.0)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document formulates the core dynamical equation of
+Information--Geometric Dynamics (IGD) and states three target
+spacetime theorems (T1--T3). The aim is to make explicit how the
+axioms A0--A10 support a GENERIC-like equation of motion for
+effective states, and how locality, thermodynamics and complexity
+enter the emergent spacetime picture. Detailed proofs and technical
+results are deferred to future work; here we focus on clean
+statements, assumptions and structural constraints.
+\end{abstract}
+
+\tableofcontents
+
+\section{Overview}
+\label{sec:overview}
+
+IGD describes the evolution of \emph{effective} states
+$\theta(t)$ on a model manifold $\Mtheta$ endowed with an
+information metric $\gmat$, a symplectic structure $\om$ and a
+complex structure $\Jc$, inherited from the underlying quantum
+state space via the axioms A0--A10. The core equation of motion
+takes the form
+\begin{equation}
+  \dot{\theta}
+  = \Jop(\theta)\,\grad \Efun(\theta)
+  + \Rop(\theta)\,\grad \Sfun(\theta),
+  \label{eq:IGD_core}
+\end{equation}
+where $\Efun$ and $\Sfun$ are effective energy and entropy
+functionals, $\Jop$ is antisymmetric (Hamiltonian flow) and
+$\Rop$ is symmetric positive semi-definite (entropy-producing
+gradient flow). This structure is analogous to the GENERIC
+formalism in non-equilibrium thermodynamics, but here it is
+explicitly anchored in quantum information geometry.
+
+The second part of this document states three target theorems:
+\begin{itemize}
+  \item T1: an informational area law (and related holographic
+        bounds) for entanglement;
+  \item T2: an emergent Einstein-like equation as a thermodynamic
+        relation for entanglement and energy flow;
+  \item T3: a link between growth of computational complexity and
+        geometric quantities in the emergent spacetime description.
+\end{itemize}
+These theorems are not assumed as axioms; they are goals of the
+spacetime programme built on top of the IGD foundation.
+
+\section{Core IGD dynamics}
+\label{sec:core_dynamics}
+
+\subsection{State space, focus manifolds and projections}
+\label{subsec:state_focus}
+
+Let $\States$ denote the global quantum state space (density
+operators on a Hilbert space $\Hilb$), equipped with the Bures
+information metric and the associated K\"ahler structure on pure
+states, as per the axioms A0 and A10. A \emph{focus manifold}
+$\Mtheta$ is a finite- or infinite-dimensional manifold of
+effective states (macrostates, model parameters) together with
+a map
+\begin{equation}
+  \pi: \States \to \Mtheta,
+\end{equation}
+interpreted as a coarse-graining or projection of the full
+microscopic description. Different choices of focus realise
+different effective theories; A8 requires IGD to be covariant
+under changes of focus.
+
+\subsection{Metric, symplectic and complex structures}
+\label{subsec:metric_structures}
+
+The pullback of the Bures metric from $\States$ and the induced
+K\"ahler structure on suitable submanifolds of $\Mtheta$ provide
+$\Mtheta$ with
+\begin{itemize}
+  \item an information metric $\gmat$,
+  \item a symplectic form $\om$,
+  \item an almost complex structure $\Jc$,
+\end{itemize}
+forming a K\"ahler-like triple in the regimes where the focus
+manifold is compatible with the underlying quantum structure
+(A0, A10). The metric $\gmat$ defines the gradient operator
+$\grad$ and scalar products of tangent vectors, while $\om$ and
+$\Jc$ encode the Hamiltonian flow structure associated with
+reversible dynamics.
+
+\subsection{Operators $J$ and $R$: structure and constraints}
+\label{subsec:J_R_constraints}
+
+The core IGD equation \eqref{eq:IGD_core} involves two
+operators acting on tangent vectors:
+\begin{itemize}
+  \item $\Jop(\theta)$: an antisymmetric operator (with respect
+        to $\gmat$) generating reversible flow;
+  \item $\Rop(\theta)$: a symmetric positive semi-definite
+        operator generating irreversible, entropy-producing flow.
+\end{itemize}
+
+More precisely, we impose the following structural conditions:
+\begin{enumerate}
+  \item \textbf{Antisymmetry of $\Jop$.} For any tangent vectors
+        $X, Y$ at $\theta$,
+        \begin{equation}
+          \langle X, \Jop Y \rangle_g
+          = - \langle \Jop X, Y \rangle_g,
+        \end{equation}
+        where $\langle \cdot,\cdot\rangle_g$ is the inner product
+        defined by $\gmat$. This ensures that the flow generated
+        by $\Jop \grad \Efun$ preserves the norm induced by
+        $\gmat$ and is analogous to a Hamiltonian flow.
+  \item \textbf{Symmetry and positivity of $\Rop$.} For any tangent
+        vectors $X, Y$,
+        \begin{equation}
+          \langle X, \Rop Y \rangle_g
+          = \langle \Rop X, Y \rangle_g,
+        \end{equation}
+        and
+        \begin{equation}
+          \langle X, \Rop X \rangle_g \ge 0.
+        \end{equation}
+        This ensures that the entropy production rate is
+        non-negative.
+  \item \textbf{Degeneracy conditions.} The reversible and
+        irreversible parts satisfy orthogonality relations such
+        as
+        \begin{equation}
+          \langle \grad \Efun, \Rop \grad \Sfun \rangle_g = 0,
+          \qquad
+          \langle \grad \Sfun, \Jop \grad \Efun \rangle_g = 0,
+        \end{equation}
+        so that energy change is governed by the reversible flow
+        and entropy production by the irreversible flow, in line
+        with the GENERIC philosophy.
+\end{enumerate}
+
+These conditions link directly back to the axioms:
+A5 (processes as channels, data processing), A6 (Landauer and
+thermodynamic cost), A8 (covariance under change of focus) and
+A10 (geometric compatibility).
+
+\subsection{Entropy production and time arrow}
+\label{subsec:entropy_arrow}
+
+Given the IGD equation \eqref{eq:IGD_core}, the rate of change
+of the entropy functional is
+\begin{equation}
+  \dot{\Sfun}(\theta)
+  = \langle \grad \Sfun, \dot{\theta} \rangle_g
+  = \langle \grad \Sfun, \Jop \grad \Efun \rangle_g
+  + \langle \grad \Sfun, \Rop \grad \Sfun \rangle_g.
+\end{equation}
+Under the degeneracy conditions above, the first term vanishes,
+and positivity of $\Rop$ implies
+\begin{equation}
+  \dot{\Sfun}(\theta) \ge 0.
+\end{equation}
+Thus the entropy functional $\Sfun$ defines an arrow of time
+for the irreversible part of the IGD flow, in harmony with the
+thermodynamic arrow captured by A6.
+
+\section{Spacetime theorems: statements and assumptions}
+\label{sec:theorems}
+
+We now state three target theorems of the IGD spacetime programme.
+At this stage, the statements are meant to be precise enough to
+guide mathematical work, but we do not claim to have complete
+proofs. Instead we outline assumptions, regimes of validity and
+the intended conclusions.
+
+\subsection{T1: Informational area law and holographic bounds}
+\label{subsec:T1}
+
+\paragraph{Informal statement.}
+Under suitable locality and gapped-spectrum assumptions, ground
+states and low-lying states of IGD-compatible systems exhibit an
+area law for entanglement entropy: the entanglement between a
+region and its complement scales with the ``area'' of the boundary,
+as measured in the emergent information geometry.
+
+\paragraph{Assumptions (sketch).}
+\begin{itemize}
+  \item A0--A10 hold (quantum structure, focus manifolds, locality
+        via A9, K\"ahler compatibility via A10).
+  \item The system admits a decomposition into local subsystems
+        arranged on an information graph whose coarse-grained
+        limit defines an effective spatial manifold.
+  \item The effective Hamiltonian (or generator of the reversible
+        part) has a non-zero spectral gap above the ground state,
+        and interactions are quasi-local in the information graph
+        sense.
+\end{itemize}
+
+\paragraph{Expected conclusion.}
+For ground states and a suitable class of low-energy states,
+the entanglement entropy $S(A)$ of a region $A$ satisfies
+\begin{equation}
+  S(A) \le \alpha\, \mathrm{Area}(\partial A) + \cdots,
+\end{equation}
+where $\alpha$ is a constant (possibly related to fundamental
+information scales) and $\mathrm{Area}(\partial A)$ is computed
+in the emergent geometry induced by A9 and the IGD dynamics.
+In discrete settings this reduces to a boundary-law scaling on
+the information graph; in continuum limits it becomes an area
+law reminiscent of holographic bounds.
+
+\subsection{T2: Einstein-like equations from entanglement thermodynamics}
+\label{subsec:T2}
+
+\paragraph{Informal statement.}
+In regimes where a smooth spacetime geometry emerges from the
+information graph (A9), and where local regions are close to
+thermal equilibrium, variations of entanglement entropy and
+energy flux across local horizons satisfy a thermodynamic
+relation whose geometric rewriting yields Einstein-like field
+equations for the emergent metric.
+
+\paragraph{Assumptions (sketch).}
+\begin{itemize}
+  \item A0--A10 hold, with a focus manifold $\Mtheta$ adapted to
+        coarse-grained, approximately local observables.
+  \item The information graph admits an IR limit described by a
+        Lorentzian manifold with a notion of local Rindler horizons
+        for accelerated observers.
+  \item States of interest satisfy a \emph{local thermodynamic
+        equilibrium} condition (LTE) so that an entanglement first
+        law holds:
+        \begin{equation}
+          \delta S_A = \delta \langle K_A \rangle,
+        \end{equation}
+        where $K_A$ is a modular Hamiltonian associated with the
+        region $A$.
+\end{itemize}
+
+\paragraph{Expected conclusion.}
+By identifying the modular Hamiltonian with an effective energy
+density integrated over the local horizon, and invoking the IGD
+link between information flow and resource flow (A5, A6), one
+expects to obtain a relation of the form
+\begin{equation}
+  \delta Q = T \,\delta S \;\;\Rightarrow\;\;
+  G_{\mu\nu} + \Lambda g_{\mu\nu} = 8\pi G\, T_{\mu\nu},
+\end{equation}
+where $G_{\mu\nu}$ is the emergent Einstein tensor of the
+coarse-grained geometry, $T_{\mu\nu}$ is an effective stress-energy
+tensor and $G$ is an emergent gravitational coupling. The precise
+form and constants depend on the microscopic details and the
+choice of focus; the key point is that an Einstein-like geometry
+arises as an \emph{equation of state} of entanglement, not as an
+independent axiom.
+
+\subsection{T3: Complexity growth and emergent geometry}
+\label{subsec:T3}
+
+\paragraph{Informal statement.}
+For chaotic IGD systems with fast scrambling dynamics, the growth
+of computational complexity along IGD trajectories is related to
+geometric quantities (such as volumes or actions) in the emergent
+spacetime picture. This provides a bridge between A7 (bounded
+description complexity) and geometric diagnostics of chaos.
+
+\paragraph{Assumptions (sketch).}
+\begin{itemize}
+  \item A0--A10 hold, with an explicit notion of computational
+        complexity for states or unitaries (e.g.\ Nielsen
+        geometry on the space of circuits or unitaries).
+  \item The IGD flow $\theta(t)$ corresponds to physically
+        implementable dynamics with a notion of simple vs
+        complex directions in tangent space.
+  \item The system is in a regime of strong chaos and fast
+        scrambling, so that complexity grows approximately
+        linearly in time up to very large scales.
+\end{itemize}
+
+\paragraph{Expected conclusion.}
+There exists a functional $\mathcal{C}[\theta(t)]$ (complexity)
+and a geometric quantity $V(t)$ or $\mathcal{A}(t)$ (e.g.\ volume
+of a maximal slice or an on-shell action in an emergent bulk
+geometry) such that, in an appropriate regime,
+\begin{equation}
+  \mathcal{C}(t) \propto V(t)
+  \quad \text{or} \quad
+  \mathcal{C}(t) \propto \mathcal{A}(t).
+\end{equation}
+The proportionality constants and the precise definitions of
+$\mathcal{C}$ and $V$/$\mathcal{A}$ depend on the model, but the
+structural claim is that complexity growth is not arbitrary: it
+is tied to geometric features of the IGD-induced spacetime.
+
+\section{Outlook}
+\label{sec:outlook}
+
+The present v3.0 document fixes the structure of the IGD core
+equation and clarifies the intended form and assumptions of the
+spacetime theorems T1--T3. The next steps in the IGD programme
+are:
+\begin{itemize}
+  \item to work out concrete classes of $(\gmat,\om,\Jc,\Jop,\Rop)$
+        compatible with A0--A10 and the constraints of this
+        document;
+  \item to establish T1--T3 rigorously for specific models
+        (spin chains, tensor networks, holographic codes,
+        SYK-like systems, etc.);
+  \item to connect these results to phenomenological physics
+        (quantum field theories, cosmology, black holes) via
+        appropriate choices of focus manifolds and limits.
+\end{itemize}
+
+\end{document}

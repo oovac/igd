@@ -1,0 +1,185 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\input{IGD_Notation_v1}
+
+\title{IGD Applications: Gapped Spin Chains and the TFIM (v1.0)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present the transverse-field Ising model (TFIM) as a concrete lattice
+realization of Information--Geometric Dynamics (IGD). In a gapped
+ferromagnetic phase the model exhibits informational locality (A9),
+a finite information length scale $\xiIGD$, and a Lieb--Robinson-like
+information velocity $\vIGD$. We link exact analytic properties of the
+TFIM (gap, correlation length, dispersion) to the IGD structures and
+summarize numerical demonstrations of ground-state mutual information
+and time-dependent information light-cones.
+\end{abstract}
+
+\section{Model and parameter regime}
+\label{sec:tfim_model}
+
+We consider the one-dimensional TFIM with open boundary conditions
+\begin{equation}
+  H = - J \sum_{i=1}^{N-1} \sigma^z_i \sigma^z_{i+1}
+      - h \sum_{i=1}^{N} \sigma^x_i,
+\end{equation}
+with $J>0$ and transverse field $h>0$. Throughout we focus on the
+gapped ferromagnetic phase $J>h$, and in particular on the working
+point
+\begin{equation}
+  J = 1, \qquad h = 0.5.
+\end{equation}
+Via a Jordan--Wigner transformation and Bogoliubov rotation the model
+maps to free fermions with dispersion relation
+\begin{equation}
+  \epsilon_k = 2 \sqrt{J^2 + h^2 - 2Jh \cos k},
+\end{equation}
+yielding a spectral gap
+\begin{equation}
+  \Delta = \min_k \epsilon_k = 2|J-h|
+\end{equation}
+and a correlation length
+\begin{equation}
+  \xiIGD^{-1} = \ln(J/h).
+\end{equation}
+For $J=1$, $h=0.5$ one finds
+\begin{equation}
+  \Delta = 1,
+  \qquad
+  \xiIGD = \frac{1}{\ln 2} \approx 1.44.
+\end{equation}
+
+The maximum group velocity of quasiparticles reads
+\begin{equation}
+  v_{\max} = 2 \min(J,h) =
+  \begin{cases}
+    2h, & J>h,\\
+    2J, & h>J,
+  \end{cases}
+\end{equation}
+which at the working point $J>h$ reduces to $v_{\max}=2h=1$.
+We identify this with the lattice information velocity
+\begin{equation}
+  \vIGD = v_{\max} = 1.
+\end{equation}
+
+\section{IGD perspective: focus manifold and geometry}
+\label{sec:tfim_focus}
+
+From the IGD point of view, the microscopic state space $\States$ of
+the TFIM consists of density operators on the spin chain. A natural
+focus manifold $\Mtheta$ for low-energy physics is the manifold of
+Gaussian fermionic states obtained after Jordan--Wigner and Bogoliubov
+transformations. In this Gaussian focus:
+
+\begin{itemize}
+  \item The state is fully characterized by a covariance matrix
+        $\Gamma$, whose entries serve as coordinates $\theta$.
+  \item The Bures (or Fubini--Study) metric induces a Riemannian metric
+        $\gmat$ on the manifold of pure Gaussian states; the fermionic
+        canonical structure provides $\om$ and $\Jc$, leading to a
+        K\"ahler-like structure as required by A10.
+  \item The reversible IGD flow $\Jop \grad \Efun$ corresponds to
+        unitary evolution under the quadratic Hamiltonian in the
+        Gaussian variables, while the irreversible part $\Rop \grad
+        \Sfun$ can be associated with Gaussian-preserving dissipative
+        channels.
+\end{itemize}
+
+Thus the TFIM in the gapped phase provides a clean example where the
+IGD geometry can be made explicit.
+
+\section{Static informational locality: mutual information and area law}
+\label{sec:tfim_static}
+
+Let $|\psi_0\rangle$ denote the ground state of $H$ in the gapped
+phase. For sites $i$ and $j$, we define reduced density matrices
+$\rho_i$, $\rho_j$, $\rho_{ij}$ and the two-site mutual information
+\begin{equation}
+  \MI(i{:}j)
+  = \SX(\rho_i) + \SX(\rho_j) - \SX(\rho_{ij}),
+\end{equation}
+with $\SX(\rho) = -\Tr(\rho \log \rho)$ the von Neumann entropy.
+Averaging over all pairs with the same lattice distance $d=|i-j|$
+yields $\MI(d)$, a one-dimensional profile of correlations.
+
+Analytically, the exponential decay of correlation functions in the
+gapped phase implies that $\MI(d)$ decays exponentially with $d$ on
+scales larger than $\xiIGD$. Numerically, for finite chains (e.g.\
+$N=8$) one observes a clear decrease of $\MI(d)$ with $d$, consistent
+with this picture. This realizes informational locality (A9) on the
+lattice: the information graph has short-range links of strength
+set by $\xiIGD$.
+
+For contiguous blocks $A$ of length $\ell$ in the ground state, the
+entanglement entropy $S_A(\ell)$ saturates quickly as $\ell$ exceeds a
+few correlation lengths. This is the one-dimensional version of an
+area law: entanglement across the boundary between $A$ and its
+complement remains bounded, in line with the T1 programme.
+
+\section{Dynamical information spreading: light-cones}
+\label{sec:tfim_dynamic}
+
+To probe dynamical aspects of IGD, one can consider a global quench
+from a simple product state, e.g.
+\begin{equation}
+  |\psi(0)\rangle = |\uparrow \uparrow \cdots \uparrow\rangle_z,
+\end{equation}
+and study the time-evolved state
+\begin{equation}
+  |\psi(t)\rangle = e^{-iHt} |\psi(0)\rangle.
+\end{equation}
+Two key diagnostics are:
+
+\begin{itemize}
+  \item the entanglement entropy $S_A(t)$ of half the chain;
+  \item the distance-dependent mutual information $\MI(d,t)$ between
+        sites at separation $d$.
+\end{itemize}
+
+For a small chain (e.g.\ $N=8$) one can compute these exactly by
+diagonalizing $H$ and performing explicit partial traces. The numerical
+results show:
+
+\begin{itemize}
+  \item $S_A(t)$ grows from zero at $t=0$, approximately linearly at
+        early times, and then bends towards a saturation value set by
+        the finite system size.
+  \item The profile $\MI(d,t)$ exhibits an \emph{information
+        light-cone}: for each fixed $d$, $\MI(d,t)$ remains small
+        until $t \sim d/\vIGD$, then grows and eventually oscillates
+        and saturates.
+\end{itemize}
+
+This behaviour is consistent with a Lieb--Robinson picture where
+information propagation is limited by the lattice velocity
+$\vIGD = v_{\max} = 1$. In IGD language, the emergent causal structure
+on the information graph is a direct manifestation of A9 combined with
+the core dynamics encoded in $J$ and $\Rop$.
+
+\section{Role in the spacetime programme}
+\label{sec:tfim_spacetime}
+
+Within the broader IGD spacetime programme, the gapped TFIM serves as
+a controlled lattice laboratory where one can:
+
+\begin{itemize}
+  \item test area-law statements (T1) in a fully solvable setting;
+  \item study how coarse-graining of the information graph leads to
+        effective low-dimensional geometries;
+  \item benchmark numerical methods (exact diagonalization, MPS/DMRG)
+        for more complex models.
+\end{itemize}
+
+The TFIM thus anchors the abstract axioms A0--A10 and the IGD core
+equation in a simple, physically transparent model.
+\end{document}

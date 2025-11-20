@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\input{IGD_Notation_v1}
+
+\title{IGD Applications: 1+1D Conformal Field Theories (v1.0)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We sketch how Information--Geometric Dynamics (IGD) manifests in
+1+1-dimensional conformal field theories (CFTs). In such theories
+static entanglement entropies of intervals obey universal logarithmic
+scaling laws, while global quenches produce linear growth and
+saturation patterns reminiscent of information light-cones. We
+interpret these results through the IGD lens, emphasizing the roles
+of informational locality, effective information velocity and the
+continuum limit of lattice models such as the TFIM.
+\end{abstract}
+
+\tableofcontents
+
+\section{Motivation and setup}
+\label{sec:cft_intro}
+
+In 1+1D CFTs, the ground state and low-lying excitations exhibit
+universal entanglement patterns governed by the central charge $c$.
+These patterns can be seen as the continuum counterpart of the area
+laws and light-cones observed in lattice models. From the IGD
+perspective, CFTs provide an analytically tractable limit of the
+information geometry associated with critical spin chains and related
+systems.
+
+We consider a CFT on either the infinite line or a circle of
+circumference $L$, and focus on the entanglement entropy $S_A$ of a
+spatial interval $A$ of length $\ell$. We set the characteristic
+velocity of excitations to $v=1$ (this $v$ should not be confused with
+$\vIGD$; in this context they coincide by construction).
+
+\section{Static entanglement in 1+1D CFT}
+\label{sec:cft_static}
+
+For the ground state of a 1+1D CFT on the infinite line, the
+entanglement entropy of an interval of length $\ell$ takes the form
+\begin{equation}
+  S_A(\ell) = \frac{c}{3} \log\!\left(\frac{\ell}{a}\right) + s_0,
+\end{equation}
+where $c$ is the central charge, $a$ is a short-distance cutoff and
+$s_0$ is a non-universal constant. On a circle of circumference $L$
+one has
+\begin{equation}
+  S_A(\ell)
+  = \frac{c}{3} \log\!\left(
+      \frac{L}{\pi a}
+      \sin\frac{\pi \ell}{L}
+    \right) + s_0.
+\end{equation}
+
+From the IGD viewpoint, the absence of a finite correlation length
+($\xiIGD \to \infty$) at criticality is reflected in the logarithmic
+dependence on $\ell$. Nevertheless, the entanglement is still controlled
+by a ``boundary'' (the endpoints of the interval), and the central
+charge $c$ acts as a measure of the effective number of degrees of
+freedom (information channels) per unit length.
+
+\section{Global quenches and entanglement growth}
+\label{sec:cft_quench}
+
+A global quantum quench in a 1+1D CFT can be modeled by preparing a
+short-range entangled state $|\psi_0\rangle$ and then evolving it with
+the CFT Hamiltonian. A simple picture in terms of pairs of
+entangled quasiparticles leads to the following qualitative behaviour
+for the entanglement entropy $S_A(t)$ of an interval $A$ of length
+$\ell$:
+\begin{equation}
+  S_A(t) \simeq
+  \begin{cases}
+    \dfrac{c}{3} \log\!\left(\dfrac{2 v t}{a}\right) + \text{const},
+      & t \lesssim \ell/(2v),\\[1ex]
+    \dfrac{c}{3} \log\!\left(\dfrac{\ell}{a}\right) + \text{const},
+      & t \gtrsim \ell/(2v).
+  \end{cases}
+\end{equation}
+At early times, entangled pairs produced near the initial ``quench
+surface'' propagate ballistically with speed $v$ in opposite directions
+and contribute to the entanglement of $A$ once both members of a pair
+enter $A$ and its complement. At late times, the entanglement saturates
+to a value set by the interval size.
+
+In addition, correlation functions and mutual information between
+spatially separated regions display light-cone structures: correlations
+become appreciable only when signals traveling at speed $v$ have had
+time to connect the regions.
+
+\section{IGD interpretation}
+\label{sec:cft_igd}
+
+The CFT setting realizes IGD concepts in a particularly sharp way:
+
+\begin{itemize}
+  \item \textbf{Information velocity.} The speed $v$ of quasiparticles
+        plays the role of an information velocity $\vIGD$ in the
+        continuum limit. Light-cone effects in entanglement and
+        correlations directly reflect the causal structure of the
+        emergent spacetime.
+  \item \textbf{Critical geometry.} The logarithmic scaling of
+        $S_A(\ell)$ indicates the absence of a finite correlation
+        length $\xiIGD$, replacing the simple exponential decay of
+        correlations with scale invariance. The underlying IGD geometry
+        is controlled by conformal symmetry rather than by a finite
+        length scale.
+  \item \textbf{Link to lattice models.} Critical lattice models such
+        as the TFIM at its quantum critical point flow in the infrared
+        to CFTs. The IGD structures identified on the lattice thus have
+        a well-defined continuum limit, with the central charge $c$
+        and the velocity $v$ encapsulating key information-geometric
+        properties.
+\end{itemize}
+
+CFTs thereby serve as a bridge between discrete IGD realizations
+(spin chains, tensor networks) and the continuum spacetime picture
+explored in the T1--T3 spacetime programme.
+
+\section{Outlook}
+\label{sec:cft_outlook}
+
+A more detailed IGD treatment of 1+1D CFTs would involve explicit
+information metrics on spaces of CFT states, modular Hamiltonians for
+intervals and their relation to emergent geometry. The present v1.0
+note is intended as a concise anchor linking known CFT entanglement
+results to the broader IGD framework.
+\end{document}

@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\input{IGD_Notation_v1}
+
+\title{Information--Geometric Dynamics v3.0:\\
+Foundations, Dynamics and Applications}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This master document provides a high-level map of the current
+Information--Geometric Dynamics (IGD) framework in version 3.0.
+Rather than duplicating material, it points to three core texts:
+the axiomatic foundation, the core dynamics and spacetime
+theorems, and a collection of model applications (TFIM, CFT and
+SYK-like toy models). It is intended as an entry point for new
+readers and collaborators.
+\end{abstract}
+
+\section{Structure of the IGD v3.0 theory stack}
+
+The IGD v3.0 theory is organized into three main layers:
+
+\begin{enumerate}
+  \item \textbf{Foundations:} axioms A0--A10, separating ontological
+        statements about quantum information from epistemic/geometric
+        assumptions about focus manifolds and locality.
+  \item \textbf{Core dynamics and spacetime theorems:} the IGD
+        equation of motion in GENERIC-like form and the statements
+        of spacetime-related theorems T1--T3.
+  \item \textbf{Applications and models:} concrete instantiations of
+        IGD in lattice models, conformal field theories and chaotic
+        systems.
+\end{enumerate}
+
+Each layer is currently implemented as a separate \LaTeX{} document in
+the \texttt{theory/} directory of the repository.
+
+\section{Foundations}
+\label{sec:foundations}
+
+The axiomatic basis of IGD is presented in:
+\begin{itemize}
+  \item \texttt{IGD\_Axiomatic\_Foundation\_v3.0.tex}
+\end{itemize}
+
+This text introduces:
+\begin{itemize}
+  \item A0: quantum structure (complex Hilbert space, purification,
+        local tomography);
+  \item A1--A4: systems, composition, measurements and resource
+        constraints (to be further elaborated);
+  \item A5--A7: processes as channels, Landauer/thermodynamic cost
+        and bounded computational complexity;
+  \item A8--A10: focus manifolds, informational locality and
+        K\"ahler-compatible information geometry.
+\end{itemize}
+
+It also summarizes how these axioms support an IGD equation of motion
+for effective states on focus manifolds, and briefly previews the
+spacetime programme.
+
+\section{Core dynamics and spacetime theorems}
+\label{sec:core}
+
+The core dynamical structure and the target spacetime theorems are
+described in:
+\begin{itemize}
+  \item \texttt{IGD\_Core\_Dynamics\_and\_Theorems\_v3.0.tex}
+\end{itemize}
+
+This document:
+\begin{itemize}
+  \item formulates the IGD equation
+        \begin{equation}
+          \dot{\theta}
+          = \Jop(\theta)\,\grad \Efun(\theta)
+          + \Rop(\theta)\,\grad \Sfun(\theta),
+        \end{equation}
+        with structural constraints on $\Jop$ and $\Rop$ (antisymmetry,
+        symmetry, positivity, degeneracy conditions);
+  \item explains how entropy production and the arrow of time arise
+        from the irreversible part of the flow;
+  \item states the three spacetime theorems (in target form):
+        \begin{itemize}
+          \item T1: informational area laws and holographic bounds;
+          \item T2: Einstein-like equations from entanglement
+                thermodynamics;
+          \item T3: complexity growth and emergent geometry.
+        \end{itemize}
+\end{itemize}
+
+At this stage, T1--T3 are formulated as precise goals rather than
+fully proven results; the document clarifies the assumptions and
+regimes under which they are expected to hold.
+
+\section{Applications and models}
+\label{sec:applications}
+
+Concrete model realizations of IGD are collected in:
+\begin{itemize}
+  \item \texttt{IGD\_Applications\_and\_Models\_v1.0.tex}
+\end{itemize}
+
+That text organizes three main regimes:
+
+\begin{enumerate}
+  \item \textbf{Gapped lattice models (TFIM):} a one-dimensional
+        transverse-field Ising chain in its gapped phase provides
+        a clean example of informational locality (A9), finite
+        information length $\xiIGD$, and an information velocity
+        $\vIGD$ controlling light-cone-like spreading of mutual
+        information. Both static (ground-state mutual information)
+        and dynamic (entanglement growth and light-cones after a
+        quench) aspects are discussed.
+  \item \textbf{1+1D CFTs:} conformal field theories in two
+        dimensions realize scale-invariant IGD regimes, with
+        universal entanglement entropies for intervals and
+        light-cone-like entanglement growth after global quenches.
+        They connect lattice IGD to continuum spacetime descriptions.
+  \item \textbf{SYK-like chaotic toys:} random all-to-all Hamiltonians
+        on few-qubit Hilbert spaces illustrate fast scrambling and
+        near-maximal entanglement, serving as a playground for the
+        complexity/geometry conjecture T3.
+\end{enumerate}
+
+Together, these models span a qualitative phase diagram of IGD
+behaviour: gapped local, critical conformal and strongly chaotic.
+
+\section{Reading guide and future integration}
+\label{sec:reading}
+
+For a new reader, a natural path through the IGD stack is:
+\begin{enumerate}
+  \item skim the present master document to understand the overall
+        structure;
+  \item read the axiomatic foundation (v3.0) to internalize A0--A10;
+  \item study the core dynamics and spacetime theorems (v3.0) to see
+        how IGD flows and what the target geometric results are;
+  \item explore the applications and models (v1.0) alongside the
+        multimodel demo code to build intuition.
+\end{enumerate}
+
+In future revisions, the separate \LaTeX{} texts may be refactored
+into chapters of a single book-style document. For now they are kept
+modular to facilitate parallel development and experimentation.
+
+\end{document}

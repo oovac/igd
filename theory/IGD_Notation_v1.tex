@@ -1,0 +1,56 @@
+% File: IGD_Notation_v1.tex
+% Shared notation and symbol conventions for IGD papers.
+%
+% This file is intended to be \input in the preamble of each IGD LaTeX document.
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{bm}
+
+% --- Sets, spaces, manifolds ---
+
+% Hilbert space and state space
+\newcommand{\Hilb}{\mathcal{H}}           % underlying Hilbert space
+\newcommand{\States}{\mathcal{S}}         % space of physical states (density operators)
+\newcommand{\Pure}{\mathcal{P}}           % manifold of pure states
+
+% Parameter / model manifolds
+\newcommand{\Mtheta}{\mathcal{M}_\theta}  % model (focus) manifold
+\newcommand{\Mphys}{\mathcal{M}}          % generic state manifold
+
+% Subsystems
+\newcommand{\HA}{\Hilb_A}
+\newcommand{\HB}{\Hilb_B}
+
+% --- Geometry: metric, symplectic form, complex structure ---
+
+\newcommand{\gij}{g_{ij}}                 % components of the information metric
+\newcommand{\gmat}{g}                     % metric tensor
+\newcommand{\om}{\omega}                  % symplectic 2-form
+\newcommand{\Jc}{\mathcal{J}}             % (almost) complex structure on pure states
+\newcommand{\Jop}{J}                      % antisymmetric operator implementing Hamiltonian flow
+\newcommand{\Rop}{R}                      % symmetric operator implementing dissipative flow
+
+% --- Energetic and entropic functionals ---
+
+\newcommand{\Efun}{E}                     % energy functional on \Mtheta
+\newcommand{\Sfun}{S}                     % entropy functional on \Mtheta
+
+% --- Gradients and flows ---
+
+\newcommand{\grad}{\nabla}                % gradient with respect to g
+\newcommand{\dotth}{\dot{\theta}}        % time derivative of parameters
+\newcommand{\ddt}{\frac{d}{dt}}          % total time derivative
+
+% --- Information-theoretic quantities ---
+
+\newcommand{\MI}{I}                       % mutual information
+\newcommand{\SX}{S}                       % entropy (generic)
+\newcommand{\KB}{k_{\mathrm{B}}}          % Boltzmann constant
+
+\newcommand{\xiIGD}{\xi}                  % correlation / information length scale
+\newcommand{\vIGD}{v_{\mathrm{IGD}}}      % information velocity (Lieb--Robinson-like)
+
+% --- Misc ---
+
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\id}{\mathbbm{1}}

@@ -1,0 +1,213 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+% Shared notation and symbols
+\input{IGD_Notation_v1}
+
+\title{Information--Geometric Dynamics:\\ Axiomatic Foundation (v3.0)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This document collects the axiomatic foundation of Information--Geometric
+Dynamics (IGD) in a single, coherent form. It is intended to supersede
+earlier drafts (v1.x, v2.x) by organizing the theory into a clear ontological
+layer (facts about the world) and an epistemic/geometric layer (models,
+focus manifolds and information geometry). The axioms A0--A10, together
+with the IGD dynamical equation, provide a minimal but powerful basis from
+which spacetime, gravity and complexity can be treated as emergent
+information-geometric phenomena.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction and scope}
+\label{sec:intro}
+
+This v3.0 foundation aims to:
+\begin{itemize}
+  \item separate clearly the \emph{ontological} assumptions (what is taken
+        as a fact about the structure of the physical world) from the
+        \emph{epistemic/geometric} assumptions (how we model and coarse-grain
+        our incomplete knowledge);
+  \item state the axioms A0--A10 in a compact and non-redundant form,
+        with inline commentary on their role;
+  \item prepare the ground for the spacetime and gravity programme
+        (theorems T1--T3) without presupposing them as axioms.
+\end{itemize}
+
+This document is designed to be read together with:
+\begin{itemize}
+  \item the IGD core dynamics and spacetime theorems (T1--T3) in a companion
+        paper \emph{IGD\_Core\_Dynamics\_and\_Theorems\_v3.0};
+  \item the model instantiations (TFIM, CFT, SYK) in
+        \emph{IGD\_Applications\_and\_Models\_v1.0}.
+\end{itemize}
+
+\section{Ontological layer: information, systems and processes}
+\label{sec:ontology}
+
+In this section we collect axioms that we interpret as statements about
+the structure of the physical world at the most abstract level: systems,
+states, composition and fundamentally allowed transformations.
+
+\subsection{A0: Quantum structure}
+\label{subsec:A0}
+
+Axiom A0 encodes the basic ``quantum'' character of the theory. It can be
+formulated in terms of three operational principles:
+\begin{itemize}
+  \item \emph{Continuous reversibility:} between any two pure states there
+        exists a continuous reversible transformation;
+  \item \emph{Purification:} any mixed state of a system can be seen as the
+        reduced state of a pure state of a larger system;
+  \item \emph{Local tomography:} the state of a composite system is fully
+        determined by the statistics of local measurements and their
+        correlations.
+\end{itemize}
+Together these principles single out complex Hilbert space quantum theory
+among generalized probabilistic theories. We therefore take as an
+ontological fact that physical systems are described by density operators
+on complex Hilbert spaces, with pure states corresponding to rays.
+
+\subsection{A1: Systems and states}
+\label{subsec:A1}
+
+\textbf{(Skeleton placeholder)} This section will collect the precise
+definition of physical systems, state spaces $\States$, and allowed
+operations at the level of completely positive trace-preserving maps,
+with composition rules for subsystems.
+
+\subsection{A2: Composition and subsystems}
+\label{subsec:A2}
+
+\textbf{(Skeleton placeholder)} Here we specify how composite systems are
+formed (tensor product structure), how subsystems are identified, and how
+partial traces and reduced states are defined.
+
+\subsection{A3: Measurements and statistics}
+\label{subsec:A3}
+
+\textbf{(Skeleton placeholder)} This section will state the assumptions
+about POVMs, outcome probabilities and the statistical interpretation of
+states, in a way compatible with A0 and with information-theoretic
+quantities such as relative entropy and mutual information.
+
+\subsection{A4: Resources and constraints}
+\label{subsec:A4}
+
+\textbf{(Skeleton placeholder)} This axiom will capture the idea that
+physical processes are constrained by limited resources (energy, time,
+computational complexity), preparing the way for A6 and A7.
+
+\subsection{A5: Processes as channels and data-processing}
+\label{subsec:A5}
+
+Axiom A5 states that physically allowed processes act as information
+channels that cannot increase distinguishability. At the level of quantum
+states this is encoded in the data-processing inequality for relative
+entropy and related monotone quantities.
+
+\subsection{A6: Thermodynamic cost and Landauer principle}
+\label{subsec:A6}
+
+Axiom A6 asserts that erasure of information has an energetic cost.
+More generally, there is a quantitative link between changes in
+information-theoretic quantities (entropy, relative entropy) and
+dissipated resources (heat), providing a microscopic origin of the
+thermodynamic arrow of time.
+
+\subsection{A7: Bounded computational complexity}
+\label{subsec:A7}
+
+Axiom A7 formalizes the idea that not all mathematically definable
+states and transformations are physically realizable: there is a bound
+on effective computational complexity. In the present v3.0 foundation we
+treat this axiom at a qualitative level, as a bridge between IGD and
+complexity-based constraints (such as those appearing in holography and
+chaotic systems).
+
+\section{Epistemic and geometric layer: focus, models and locality}
+\label{sec:epistemic}
+
+The second layer of the axiomatic structure concerns how an agent (or
+effective theory) \emph{models} the underlying ontological physics. The
+key concepts are focus, model manifold and informational locality.
+
+\subsection{A8: Focus and model manifold}
+\label{subsec:A8}
+
+Axiom A8 introduces the notion of a \emph{focus}---a choice of coarse
+description of the world in terms of a model manifold
+$\Mtheta$ of macrostates (or effective parameters) $\theta$. The same
+underlying ontic state can be represented by many different points in
+different model manifolds, and the IGD equations must be covariant under
+such changes of focus.
+
+\subsection{A9: Informational locality and emergent geometry}
+\label{subsec:A9}
+
+Axiom A9 states that the global state space admits a factorization into
+subsystems and that \emph{informational locality} is determined by the
+pattern of correlations (e.g.\ mutual information) between them. This
+induces an emergent graph structure and, in suitable limits, an emergent
+spatial geometry on which interactions are quasi-local.
+
+\subsection{A10: Geometric compatibility (K\"ahler structure)}
+\label{subsec:A10}
+
+Axiom A10 requires that the information metric $\gmat$, the symplectic
+structure $\om$ and the complex structure $\Jc$ on the relevant state
+manifolds form a compatible (K\"ahler-like) triple. This ensures that
+unitary quantum evolution appears as an isometric Hamiltonian flow with
+respect to the information metric, and allows us to write IGD in a
+GENERIC-like form.
+
+\section{Information--Geometric Dynamics}
+\label{sec:igd_dynamics}
+
+In this section we summarize how the axioms A0--A10 support the IGD
+equation of motion for effective states $\theta(t)$ on a model manifold
+$\Mtheta$:
+\begin{equation}
+  \dot{\theta}
+  = \Jop(\theta)\,\grad \Efun(\theta)
+  + \Rop(\theta)\,\grad \Sfun(\theta),
+\end{equation}
+where $\Jop$ is antisymmetric with respect to the metric $\gmat$,
+implementing a Hamiltonian (reversible) flow, and $\Rop$ is symmetric
+and positive semi-definite, implementing an entropy-increasing
+(irreversible) flow. The precise conditions on $(\gmat,\om,\Jc,\Jop,\Rop)$
+and their relation to the axioms will be elaborated in a dedicated
+companion document.
+
+\section{Preview: spacetime, gravity and complexity}
+\label{sec:preview_spacetime}
+
+Finally, we briefly indicate how the axioms laid out above are intended
+to support the emergent picture of spacetime and gravity:
+
+\begin{itemize}
+  \item Theorems of ``area-law type'' (T1) relate informational locality
+        and the structure of correlations to area-scaling of entanglement
+        entropy in appropriate regimes.
+  \item Thermodynamic and modular-geometry arguments (T2) aim to show
+        that, under suitable locality and equilibrium assumptions, the
+        emergent metric satisfies Einstein-like equations.
+  \item Complexity-based considerations (T3) connect the growth of
+        computational complexity along IGD trajectories to geometric
+        quantities (such as volumes or actions) in the emergent
+        spacetime description.
+\end{itemize}
+
+These results are \emph{not} taken as axioms; instead they are formulated
+as target theorems in the spacetime programme built on top of the present
+axiomatic foundation.
+
+\end{document}

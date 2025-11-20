@@ -1,0 +1,152 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\input{IGD_Notation_v1}
+
+\title{IGD Applications: Chaotic Dynamics and SYK-like Models (v1.0)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We outline how Information--Geometric Dynamics (IGD) can be applied
+to strongly chaotic quantum systems, using SYK-like models as a
+guiding example. In such systems entanglement entropies of subsystems
+grow rapidly towards near-maximal values, and operator complexity
+increases approximately linearly over long times. We interpret
+these phenomena through the IGD lens, emphasizing the role of
+A7 (bounded computational complexity) and the target theorem T3
+(complexity/geometry correspondence).
+\end{abstract}
+
+\tableofcontents
+
+\section{Motivation}
+\label{sec:syk_intro}
+
+While gapped spin chains and CFTs illustrate IGD in relatively
+controlled regimes (locality with finite or scale-invariant correlation
+lengths), strongly chaotic models push IGD into a different corner of
+the landscape. SYK-type models, with all-to-all random interactions
+and fast scrambling dynamics, are natural candidates for exploring
+the interplay between:
+
+\begin{itemize}
+  \item rapid entanglement growth and saturation;
+  \item exponential operator growth and linear complexity growth;
+  \item emergent geometric descriptions in terms of nearly-AdS$_2$
+        or related spaces.
+\end{itemize}
+
+In this v1.0 note we do not attempt a full SYK construction; instead
+we sketch the IGD interpretation and connect to a simple toy model
+implemented in the multimodel demo repository.
+
+\section{Toy model: random all-to-all Hamiltonian}
+\label{sec:syk_toy_model}
+
+As a minimal chaotic playground we can take a random all-to-all
+Hermitian Hamiltonian acting on $N_q$ qubits:
+\begin{equation}
+  H_{\text{toy}} = H_{\text{ran}},
+\end{equation}
+where $H_{\text{ran}}$ is drawn from a suitable ensemble (e.g.\ a
+Gaussian unitary ensemble on the $2^{N_q}$-dimensional Hilbert space).
+Starting from a simple product state
+\begin{equation}
+  |\psi(0)\rangle = |\uparrow \uparrow \cdots \uparrow\rangle_z,
+\end{equation}
+we consider the unitary evolution
+\begin{equation}
+  |\psi(t)\rangle = e^{-i H_{\text{toy}} t} |\psi(0)\rangle.
+\end{equation}
+
+For moderate $N_q$ (e.g.\ $N_q=6$), one can diagonalize $H_{\text{toy}}$
+exactly and compute the entanglement entropy $S_A(t)$ of half the
+qubits as a function of time. Numerically, one typically observes:
+
+\begin{itemize}
+  \item a rapid initial growth of $S_A(t)$ from zero towards a value
+        close to the Page entropy of a random pure state;
+  \item fluctuations around this near-maximal entropy at late times.
+\end{itemize}
+
+This behaviour contrasts with the light-cone-limited growth in local
+models: here, entanglement spreads essentially without spatial
+constraints, reflecting the all-to-all connectivity.
+
+\section{IGD interpretation: complexity and T3}
+\label{sec:syk_igd}
+
+In IGD terms, the toy model and more realistic SYK models highlight
+the role of A7 (bounded computational complexity) and the T3
+complexity/geometry conjecture:
+
+\begin{itemize}
+  \item The focus manifold $\Mtheta$ can be taken as a space of pure
+        states or unitaries equipped with a \emph{complexity metric}
+        (e.g.\ Nielsen geometry), in addition to an information metric.
+  \item The IGD flow $\dot{\theta} = \Jop \grad \Efun + \Rop \grad \Sfun$
+        then has both an information-geometric and a complexity-geometric
+        interpretation: trajectories explore increasingly complex regions
+        of $\Mtheta$ as $t$ grows.
+  \item In chaotic regimes, the complexity $\mathcal{C}(t)$ of
+        $|\psi(t)\rangle$ (or of the corresponding unitary) is
+        expected to grow approximately linearly over long times,
+        before saturating due to the finite Hilbert space size.
+\end{itemize}
+
+T3 posits that this complexity growth can be related to geometric
+quantities in an emergent spacetime description, such as volumes of
+maximal slices or on-shell actions in a dual gravitational theory:
+\begin{equation}
+  \mathcal{C}(t) \propto V(t)
+  \quad\text{or}\quad
+  \mathcal{C}(t) \propto \mathcal{A}(t).
+\end{equation}
+From the IGD perspective, this is not taken as an independent axiom,
+but as a structural pattern to be derived in suitable limits.
+
+\section{Connection to the multimodel demo}
+\label{sec:syk_demo}
+
+The multimodel demo accompanying this theory includes a small
+SYK-like toy implementation: a random Hermitian Hamiltonian on
+$N_q$ qubits, exact diagonalization, and computation of the
+half-system entropy $S_A(t)$. While this toy does not capture the
+full richness of SYK (e.g.\ Majorana fermions, specific interaction
+structure), it already illustrates:
+
+\begin{itemize}
+  \item fast scrambling of entanglement compared to local models;
+  \item the absence of a simple light-cone structure in real space;
+  \item the relevance of global complexity-based notions of distance
+        on state space.
+\end{itemize}
+
+This makes the toy model a useful IGD benchmark for the chaotic
+corner of the theory, complementary to the TFIM and CFT regimes.
+
+\section{Outlook}
+\label{sec:syk_outlook}
+
+A full IGD treatment of SYK proper would involve:
+
+\begin{itemize}
+  \item specifying appropriate focus manifolds (e.g.\ low-energy
+        effective descriptions, Schwarzian sectors);
+  \item constructing explicit information and complexity metrics;
+  \item analyzing how the IGD flow reproduces known features such as
+        maximal chaos and nearly-AdS$_2$ emergent geometries.
+\end{itemize}
+
+The present v1.0 note is intended as a stepping stone: it anchors the
+chaotic, complexity-dominated regime in the IGD framework and clarifies
+the conceptual link to the T3 complexity/geometry conjecture.
+
+\end{document}
