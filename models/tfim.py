@@ -134,6 +134,7 @@ def mi_distance_vs_time(states, N):
         I_dt[mask, ti] /= counts[mask]
     return d_vals, I_dt
 
+
 def block_entropies_ground_state(N=8, J=1.0, h=0.5):
     """
     Compute block entropies S(ell) [bits] for ell = 1..N//2
@@ -173,6 +174,7 @@ def plot_block_entropies(N=8, J=1.0, h=0.5, fig_dir="figures", prefix="TFIM"):
     plt.savefig(out)
     plt.close()
     return ells, S_bits, E0
+
 
 def run_static(N=8, J=1.0, h=0.5, fig_dir="figures", prefix="TFIM"):
     """Compute ground-state I(d) and save a plot."""
