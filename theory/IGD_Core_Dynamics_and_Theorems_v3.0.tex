@@ -220,6 +220,32 @@ In discrete settings this reduces to a boundary-law scaling on
 the information graph; in continuum limits it becomes an area
 law reminiscent of holographic bounds.
 
+\subsection{Realisation of T1 in one-dimensional spin chains}
+\label{subsec:T1_spin_chains}
+
+In practice, the simplest non-trivial realisation of T1 is provided by
+one-dimensional gapped spin chains. The TFIM in its ordered phase is a
+canonical example:
+\begin{itemize}
+  \item it has an explicit spectral gap $\Delta = 2|J-h|$ and finite
+        information correlation length $\xiIGD^{-1} = \ln(J/h)$;
+  \item ground-state correlators and mutual information decay
+        exponentially with distance, realising informational locality
+        (A9) on the lattice;
+  \item block entropies $S_A(\ell)$ for contiguous intervals saturate
+        rapidly as $\ell$ exceeds a few $\xiIGD$, exhibiting the
+        one-dimensional area-law pattern.
+\end{itemize}
+
+These features are worked out in detail in the companion texts
+\texttt{IGD\_T1\_AreaLaw\_SpinChains\_v1.0.tex} and
+\texttt{IGD\_Lattice\_SpinChains\_v1.0.tex}, and are numerically
+illustrated by the multimodel demo (TFIM mode) in the repository. From
+the IGD viewpoint, the TFIM ground state picks out a low-dimensional
+focus manifold (Gaussian/MPS-like) on which the IGD dynamics is
+effectively confined, making T1 a concrete, testable spacetime
+statement rather than a purely abstract conjecture.
+
 \subsection{T2: Einstein-like equations from entanglement thermodynamics}
 \label{subsec:T2}
 
