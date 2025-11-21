@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-IGD simulator v2: unified CLI for TFIM, 1+1D CFT, and SYK-like toy models.
+IGD simulator v2: unified CLI for TFIM, 1+1D CFT, and SYK-like / SYK4 toy models.
 
 Usage examples:
   python igd_simulator_v2.py --model tfim --mode both
   python igd_simulator_v2.py --model cft  --mode both --cft_c 0.5 --compare_tfim_critical
-  python igd_simulator_v2.py --model syk  --mode dynamic
+  python igd_simulator_v2.py --model syk  --mode dynamic --syk_mode syk4
 """
 import argparse
 from pathlib import Path
@@ -46,7 +46,7 @@ def run_tfim(args):
     print(f"[IGD-TFIM] ξ_IGD (theory) ≈ {xi_theory:.4f}")
     print(f"[IGD-TFIM] v_IGD (theory) ≈ {v_igd:.4f}")
 
-    # Static IGD observables: mutual information vs distance + block entropies
+    # Static observables: mutual information vs distance + block entropies
     if args.mode in ("static", "both"):
         d, I_d_bits, _E0 = tfim.run_static(N=N, J=J, h=h, fig_dir=str(fig_dir), prefix="TFIM")
         print("[IGD-TFIM] Static mutual information I(d) [bits]:")
@@ -59,7 +59,7 @@ def run_tfim(args):
             print(f"  ell={int(ell)}: S ≈ {Sval:.4e}")
         print("[IGD-TFIM] Block entropy plot saved in figures/")
 
-    # Dynamic IGD observables: entanglement and I(d,t)
+    # Dynamic observables: entanglement and I(d,t)
     if args.mode in ("dynamic", "both"):
         times, S_half_bits, d_vals, I_dt_bits = tfim.run_dynamic(
             N=N, J=J, h=h, t_max=args.tmax, num_t=args.num_t,
@@ -119,20 +119,32 @@ def run_cft(args):
 
 def run_syk(args):
     fig_dir = Path(args.figdir)
-    Nq = args.Nq
 
-    print(f"[IGD-SYKtoy] Running chaotic toy model with Nq={Nq} qubits")
-
-    times, S_half_bits = syk_toy.run_demo(
-        mode="dynamic", fig_dir=str(fig_dir), Nq=Nq, t_max=args.tmax, num_t=args.num_t
-    )
-    print("[IGD-SYKtoy] Half-system entropy S_A(t) [bits]:")
-    print(f"  S_A(0) ≈ {S_half_bits[0]:.4e}, S_A(t_end) ≈ {S_half_bits[-1]:.4e}")
+    if args.syk_mode == "random":
+        Nq = args.Nq
+        print(f"[IGD-SYKtoy] Running random-Hermitian toy with Nq={Nq} qubits")
+        times, S_half_bits = syk_toy.run_dynamic(
+            Nq=Nq, t_max=args.tmax, num_t=args.num_t,
+            fig_dir=str(fig_dir), prefix="SYK_Toy", seed=args.seed
+        )
+        print("[IGD-SYKtoy] Half-system entropy S_A(t) [bits]:")
+        print(f"  S_A(0) ≈ {S_half_bits[0]:.4e}, S_A(t_end) ≈ {S_half_bits[-1]:.4e}")
+    elif args.syk_mode == "syk4":
+        Nf = args.Nf
+        print(f"[IGD-SYK4] Running Majorana SYK4 toy with Nf={Nf} fermionic modes")
+        times, S_half_bits = syk_toy.run_dynamic_syk4(
+            Nf=Nf, t_max=args.tmax, num_t=args.num_t,
+            fig_dir=str(fig_dir), prefix="SYK4", seed=args.seed
+        )
+        print("[IGD-SYK4] Half-system entropy S_A(t) [bits]:")
+        print(f"  S_A(0) ≈ {S_half_bits[0]:.4e}, S_A(t_end) ≈ {S_half_bits[-1]:.4e}")
+    else:
+        raise ValueError(f"Unknown syk_mode: {args.syk_mode!r}")
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="IGD simulator v2: TFIM, CFT, SYK-like toy."
+        description="IGD simulator v2: TFIM, CFT, SYK-like toy models."
     )
     parser.add_argument(
         "--model", choices=["tfim", "cft", "syk"], default="tfim",
@@ -162,7 +174,13 @@ def main():
     )
 
     # SYK toy-specific
-    parser.add_argument("--Nq", type=int, default=6, help="Number of qubits in SYK toy.")
+    parser.add_argument(
+        "--syk_mode", choices=["random", "syk4"], default="random",
+        help="SYK toy mode: 'random' for random Hermitian, 'syk4' for structured Majorana SYK4."
+    )
+    parser.add_argument("--Nq", type=int, default=6, help="Number of qubits in random-Hermitian SYK toy.")
+    parser.add_argument("--Nf", type=int, default=4, help="Number of fermionic modes (Nf) for SYK4 toy (Hilbert dimension = 2^Nf).")
+    parser.add_argument("--seed", type=int, default=0, help="Random seed for SYK toys.")
 
     args = parser.parse_args()
 
