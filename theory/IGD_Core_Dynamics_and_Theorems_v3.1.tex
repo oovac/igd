@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{hyperref}
+
+\title{Information--Geometric Dynamics:\\
+Core Dynamics and Spacetime Theorems (v3.1)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note collects the core dynamical structure of Information--Geometric
+Dynamics (IGD) and summarises the three spacetime theorems (T1--T3)
+together with their concrete model realisations implemented in the
+multimodel IGD simulator. It is intended as an overview document,
+linking the axiomatic foundation to the TFIM (gapped), CFT (critical)
+and SYK$_4$ (chaotic) testbeds.
+\end{abstract}
+
+\section{IGD axioms and core dynamics}
+
+We assume the full axiomatic basis A0--A10 has been introduced in the
+separate foundation text (\emph{IGD\_Axiomatic\_Foundation\_v2.3},
+\emph{IGD\_Axiomatic\_Foundation\_v3.0}, etc.). Here we only recall the
+minimal ingredients needed to state the spacetime theorems.
+
+\begin{itemize}
+  \item \textbf{Quantum structure (A0):} the state space is that of
+        density operators on a complex Hilbert space, with purification
+        and local tomography ensuring the standard quantum framework
+        (Hilbert space, tensor product composition, entanglement).
+  \item \textbf{Information and resources (A1--A7):} information is
+        treated as a physical resource subject to constraints such as
+        Landauer's principle and bounded computational complexity.
+  \item \textbf{Focus and geometry (A8--A10):} physical descriptions
+        live on focus manifolds $\mathcal{M}_\theta$ embedded in the
+        full state space, equipped with an information metric (Bures),
+        a compatible symplectic form and a complex structure. The
+        reversible dynamics is a K\"ahler isometry and the irreversible
+        dynamics is a gradient flow of entropy with respect to the same
+        metric.
+\end{itemize}
+
+The generic IGD equation of motion on a focus manifold $\mathcal{M}_\theta$
+has the GENERIC form
+\begin{equation}
+  \dot{\theta} = J(\theta)\,\nabla E(\theta) + R(\theta)\,\nabla S(\theta),
+\end{equation}
+where $J$ encodes the reversible (Hamiltonian) part and $R$ the
+irreversible (entropic) part. The spacetime theorems T1--T3 describe
+emergent geometric behaviour of this dynamics in different regimes.
+
+\section{Spacetime theorems T1--T3: overview}
+
+\subsection{T1: informational area laws in gapped regimes}
+
+T1 addresses entanglement area laws in gapped phases with short-range
+correlations. Informally, for local gapped Hamiltonians satisfying the
+IGD locality and clustering assumptions, ground states obey an
+entanglement area law: the entropy of a region scales with the
+``area'' of its boundary rather than its volume.
+
+In one spatial dimension this reduces to the statement that the
+entropy $S_A(\ell)$ of a contiguous block of length $\ell$ in a
+gapped spin chain is bounded by a constant independent of $\ell$,
+once the block is large compared to the correlation length
+$\xi_{\mathrm{IGD}}$ extracted from the information metric.
+
+A detailed IGD formulation of T1 and its relation to known area-law
+theorems in one dimension is given in
+\emph{IGD\_T1\_AreaLaw\_SpinChains\_v1.0.tex}. The transverse-field
+Ising model (TFIM) in its gapped phase provides a canonical example;
+its IGD analysis and numerical simulations are documented in
+\emph{IGD\_Lattice\_SpinChains\_v1.0.tex}.
+
+\subsection{T2: entanglement thermodynamics and Einstein-like equations}
+
+T2 focuses on the emergence of Einstein-like field equations from
+entanglement thermodynamics in appropriate near-equilibrium regimes.
+The guiding idea is that for small perturbations of the vacuum of a
+local quantum field theory (or a suitable many-body system), changes
+in entanglement entropy of local regions obey a first-law relation
+$\delta S = \delta \langle K \rangle$, where $K$ is the modular
+Hamiltonian. Combined with an identification of $\delta \langle K
+\rangle$ with energy flux through local causal horizons, this leads
+to equations of motion for an emergent spacetime metric that resemble
+Einstein's equations.
+
+In the IGD setting, T2 asserts that under the axioms A0--A10 and
+additional assumptions of local thermodynamic equilibrium (LTE) and
+smooth coarse-graining (RG flow to an infrared fixed point), there
+exists an emergent geometric description in which the entanglement
+structure of states determines an effective metric obeying
+Einstein-like equations in a suitable linearised regime.
+
+A full technical implementation of T2 is beyond the scope of the
+present v3.1 note; the CFT and critical spin-chain sectors in the
+simulator provide the natural laboratory for developing this
+entanglement-thermodynamic perspective.
+
+\subsection{T3: chaos, complexity and emergent geometry}
+
+T3 addresses chaotic regimes where the dominant feature of the IGD
+flow is rapid growth of complexity and scrambling of information. Its
+informal content is:
+
+\begin{itemize}
+  \item there exists a complexity functional $\mathcal{C}[\rho(t)]$
+        associated with information--geometric lengths of trajectories
+        in an appropriate metric on state or unitary space;
+  \item operational complexity proxies such as half-system entanglement
+        $S_A(t)$ and out-of-time-order correlator (OTOC) diagnostics
+        $C(t)$ track the growth and saturation of $\mathcal{C}[\rho(t)]$;
+  \item this complexity growth is encoded in emergent geometric
+        quantities (volumes, actions, lengths) associated with the IGD
+        flow, in the spirit of complexity--volume or complexity--action
+        ideas, but formulated in a fully information--geometric
+        framework.
+\end{itemize}
+
+A concrete realisation of the T3 playground is provided by a small
+Majorana SYK$_4$--like model implemented on a few qubits, with
+entanglement and OTOC diagnostics computed exactly. The corresponding
+phenomenology and its IGD interpretation are described in
+\emph{IGD\_Chaos\_Complexity\_T3\_v1.0.tex}.
+
+\section{Model sectors and simulator mapping}
+
+The multimodel IGD simulator implements three main sectors that map
+directly onto the T1--T3 structure:
+
+\begin{itemize}
+  \item \textbf{Gapped sector (TFIM/T1):} one-dimensional gapped
+        spin chains, with explicit computation of entanglement
+        entropies $S_A(\ell)$, mutual information $I(d)$, dynamical
+        entanglement growth $S_A(t)$ after quenches, and information
+        light-cones $I(d,t)$.
+  \item \textbf{Critical sector (CFT/critical TFIM):} an effective
+        1+1D CFT description of critical spin chains, with logarithmic
+        entanglement scaling and quench dynamics, plus a comparison
+        between critical TFIM and CFT predictions.
+  \item \textbf{Chaotic sector (SYK$_4$/T3):} a small Majorana SYK$_4$
+        toy model with exact time evolution, half-system entanglement
+        growth $S_A(t)$ and OTOC-based scrambling diagnostics $C(t)$.
+\end{itemize}
+
+The present v3.1 core note should be read together with the detailed
+model-specific texts and the simulator documentation, which show in
+explicit numerical form how the abstract spacetime theorems T1--T3
+manifest in concrete quantum many-body systems.
+\end{document}

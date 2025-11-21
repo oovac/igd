@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+\title{IGD Multimodel Simulator:\\
+Usage and Mapping to Spacetime Theorems (v1.0)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Overview}
+
+The IGD multimodel simulator is a small Python codebase that implements
+three complementary model sectors:
+
+\begin{itemize}
+  \item gapped spin chains (TFIM) as a realisation of the T1 area-law
+        regime;
+  \item critical 1+1D CFT behaviour and its relation to critical
+        spin chains (TFIM at criticality);
+  \item a small Majorana SYK$_4$--like model as a playground for
+        chaos, scrambling and T3.
+\end{itemize}
+
+The main entry point is a script such as
+\texttt{igd\_simulator\_v2.py} (or an equivalent front-end) providing
+a command-line interface (CLI) to the different modes.
+
+\section{TFIM mode (T1: gapped sector)}
+
+In TFIM mode the simulator constructs the Hamiltonian of a
+transverse-field Ising chain with parameters $(N,J,h)$ and computes:
+
+\begin{itemize}
+  \item the ground-state energy and gap $\Delta$;
+  \item the information correlation length $\xi_{\mathrm{IGD}}$ and
+        information velocity $v_{\mathrm{IGD}}$ in the gapped phase;
+  \item static mutual information $I(d)$ between sites at distance
+        $d$ in the ground state;
+  \item block entropies $S_A(\ell)$ for contiguous intervals of
+        length $\ell$ (T1 area-law diagnostic);
+  \item dynamical entanglement growth $S_A(t)$ and mutual information
+        light-cones $I(d,t)$ after a local or global quench.
+\end{itemize}
+
+These observables provide a direct numerical realisation of the
+T1 spacetime theorem in one dimension. The corresponding IGD theory
+is documented in \emph{IGD\_T1\_AreaLaw\_SpinChains\_v1.0.tex} and
+\emph{IGD\_Lattice\_SpinChains\_v1.0.tex}.
+
+\section{CFT mode (critical sector)}
+
+In CFT mode the simulator evaluates analytical entanglement formulas
+for a 1+1D conformal field theory with central charge $c$, including:
+
+\begin{itemize}
+  \item the ground-state entanglement entropy $S_A(\ell)$ of an
+        interval of length $\ell$, with the characteristic
+        logarithmic scaling $S_A(\ell) \sim \tfrac{c}{3}\log(\ell/a)$;
+  \item quench entanglement growth $S_A(t)$ in simple CFT quench
+        protocols.
+\end{itemize}
+
+An optional comparison mode juxtaposes these CFT predictions with
+numerical results for a critical TFIM chain (e.g.\ $J=h$) of finite
+size, allowing one to see explicitly how the lattice model approaches
+the CFT scaling forms.
+
+The IGD interpretation of this critical sector, and its role as a
+bridge towards T2 (entanglement thermodynamics and Einstein-like
+equations), is outlined in \emph{IGD\_CFT\_1p1\_v1.0.tex} and related
+notes.
+
+\section{SYK mode (T3: chaotic sector)}
+
+In SYK mode the simulator provides two related chaotic models:
+
+\begin{itemize}
+  \item a random-Hermitian toy on $N_q$ qubits, useful as a simple
+        test of entanglement growth;
+  \item a structured Majorana SYK$_4$--like model built from $2N_f$
+        Majorana operators on $N_f$ qubits, with Hamiltonian
+        \(
+          H = \sum_{i<j<k<l} J_{ijkl}\gamma_i\gamma_j\gamma_k\gamma_l.
+        \)
+\end{itemize}
+
+For the SYK$_4$ toy the simulator computes:
+
+\begin{itemize}
+  \item half-system entanglement entropy $S_A(t)$ as a function of
+        time, starting from a simple product state;
+  \item an out-of-time-order correlator (OTOC) diagnostic
+        $F(t)$ and the associated scrambling measure $C(t)=1-\Re F(t)$
+        for simple local Pauli operators.
+\end{itemize}
+
+These outputs constitute a concrete, finite-size realisation of the
+T3 phenomenology: rapid complexity growth and scrambling in a chaotic
+IGD regime. The corresponding theory is discussed in
+\emph{IGD\_Chaos\_Complexity\_T3\_v1.0.tex}.
+
+\section{Mapping summary}
+
+To summarise the mapping between simulator modes and spacetime
+theorems:
+
+\begin{center}
+\begin{tabular}{lll}
+\hline
+Mode & Theorem / regime & Key observables \\
+\hline
+TFIM (gapped) & T1 (area law) &
+  $S_A(\ell)$, $I(d)$, $S_A(t)$, $I(d,t)$ \\
+CFT / critical TFIM & T1/T2 bridge (criticality) &
+  $\log$-scaling $S_A(\ell)$, CFT quench $S_A(t)$ \\
+SYK$_4$ (chaotic) & T3 (chaos / complexity) &
+  $S_A(t)$, OTOC-based $C(t)$ \\
+\hline
+\end{tabular}
+\end{center}
+
+This documentation should be read together with the core dynamics
+note \emph{IGD\_Core\_Dynamics\_and\_Theorems\_v3.1.tex} and the
+model-specific theory files for a complete picture of the IGD
+programme implemented in the code.
+\end{document}
