@@ -1,0 +1,206 @@
+\documentclass[11pt]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{hyperref}
+
+\title{Information--Geometric Dynamics:\\
+Applications and Model Sectors (v1.0)}
+\author{Ordo Vacui and Collaborator}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This note provides a meta-level overview of the current model sectors
+used to instantiate Information--Geometric Dynamics (IGD). It is meant
+to sit between the axiomatic foundation and the detailed model-specific
+manuscripts. We emphasise three complementary regimes:
+(1) gapped lattice systems (T1, area laws),
+(2) critical conformal regimes (bridge to T2, entanglement
+thermodynamics),
+(3) chaotic models of SYK type (T3, chaos and complexity).
+Together they form an ``IGD phase diagram'' of applications.
+\end{abstract}
+
+\section{Position in the IGD stack}
+
+The full IGD programme can be viewed as a layered stack:
+
+\begin{itemize}
+  \item \textbf{Axioms and core dynamics:} expressed in terms of
+        axioms A0--A10 and the GENERIC IGD equation
+        $\dot{\theta} = J(\theta)\nabla E(\theta) + R(\theta)\nabla S(\theta)$.
+  \item \textbf{Spacetime theorems:} T1 (area laws),
+        T2 (entanglement thermodynamics and Einstein-like equations),
+        T3 (chaos/complexity and emergent geometry).
+  \item \textbf{Applications and models:} concrete quantum systems in
+        which the abstract structures can be tested and visualised.
+\end{itemize}
+
+This document focuses on the third layer: it explains which models we
+use as representatives of different regimes, how they map to T1--T3,
+and how they interrelate.
+
+\section{Gapped lattice spin chains (T1 sector)}
+
+The first and most controlled application sector consists of
+one-dimensional gapped lattice models, in particular the transverse
+field Ising model (TFIM) and its variants. The key features are:
+
+\begin{itemize}
+  \item a local Hamiltonian with a non-zero spectral gap $\Delta > 0$;
+  \item exponentially decaying correlations with a finite correlation
+        length $\xi_{\mathrm{IGD}}$;
+  \item entanglement area laws: for the ground state, the entropy
+        $S_A(\ell)$ of a block of length $\ell$ saturates to a
+        constant for $\ell \gg \xi_{\mathrm{IGD}}$.
+\end{itemize}
+
+In the IGD language this sector realises the spacetime theorem T1:
+informational locality (A9) and the K\"ahler-compatible dynamics
+(A10) together yield area-law behaviour for entanglement and mutual
+information. The TFIM implementation provides:
+
+\begin{itemize}
+  \item analytic control via fermionisation in simple regimes;
+  \item exact diagonalisation for small systems (the current simulator);
+  \item a clean numerical demonstration of static and dynamical area
+        laws (mutual-information light-cones, entanglement saturation).
+\end{itemize}
+
+The detailed analysis of this sector is carried out in the spin-chain
+workplan and related drafts (e.g.\ the TFIM static and dynamical
+preprints in the \texttt{paper/} directory).
+
+\section{Critical CFT-like regimes (bridge to T2)}
+
+The second sector consists of critical models with emergent conformal
+symmetry, such as the TFIM at its quantum critical point and
+1+1-dimensional conformal field theories (CFTs) with central charge
+$c$. Here the spectral gap closes and the entanglement entropy exhibits
+characteristic logarithmic scaling,
+\begin{equation}
+  S_A(\ell) \sim \frac{c}{3}\log(\ell/a) + \text{const}.
+\end{equation}
+
+This sector plays a dual role:
+
+\begin{itemize}
+  \item it marks the boundary between strictly gapped T1 regimes and
+        more subtle gapless physics;
+  \item it provides the natural playground for T2, where
+        entanglement thermodynamics and modular Hamiltonians are
+        expected to give rise to Einstein-like equations for emergent
+        metrics.
+\end{itemize}
+
+On the lattice side, the critical TFIM provides a concrete
+approximation to a 1+1D CFT. On the continuum side, explicit CFT
+formulas for $S_A(\ell)$ and quench entanglement $S_A(t)$ allow us to
+compare lattice numerics with analytic predictions.
+
+A dedicated CFT/critical manuscript (e.g.\
+\emph{IGD\_CFT\_1p1\_v1.0.tex}) is meant to accompany this overview,
+detailing how IGD structures appear in conformal settings and how they
+relate to T2.
+
+\section{Chaotic SYK-type models (T3 sector)}
+
+The third sector targets strongly chaotic dynamics and fast scrambling.
+The guiding example is the Sachdev--Ye--Kitaev (SYK) family of models,
+in which random all-to-all interactions between fermions produce
+maximally chaotic behaviour and, in suitable limits, holographic
+duality to nearly-AdS$_2$ gravity.
+
+In the present codebase we use small SYK-like toy models as a T3
+playground:
+
+\begin{itemize}
+  \item a random-Hermitian toy Hamiltonian on a few qubits, used to
+        illustrate generic entanglement growth in chaotic systems;
+  \item (in planned extensions) small Majorana SYK$_4$-like models,
+        where a Hamiltonian of the form
+        $H = \sum_{i<j<k<l} J_{ijkl}\gamma_i\gamma_j\gamma_k\gamma_l$
+        can be implemented on a handful of qubits and studied via
+        exact diagonalisation.
+\end{itemize}
+
+The main IGD diagnostics in this sector are:
+
+\begin{itemize}
+  \item half-system entanglement entropy $S_A(t)$ as a function of
+        time, starting from simple product states;
+  \item out-of-time-order correlator (OTOC) diagnostics $F(t)$ and
+        scrambling measures $C(t) = 1-\Re F(t)$.
+\end{itemize}
+
+These quantities act as operational complexity proxies for the T3
+spacetime theorem, which links complexity growth in IGD to emergent
+geometric quantities. A more detailed chaos-focused manuscript (e.g.\
+\emph{IGD\_SYK\_Chaos\_v1.0.tex}) is intended to expand on this sector.
+
+\section{An IGD ``phase diagram'' of regimes}
+
+It is conceptually useful to organise these sectors into an abstract
+``phase diagram'' of IGD applications. Two natural axes are:
+
+\begin{itemize}
+  \item \textbf{spectral gap / correlation length:} from gapped,
+        short-range-correlated phases to gapless, critical or even
+        long-range-correlated regimes;
+  \item \textbf{degree of chaos:} from integrable or nearly-integrable
+        models to strongly chaotic, fast-scrambling systems.
+\end{itemize}
+
+In such a diagram:
+
+\begin{itemize}
+  \item gapped TFIM-like chains sit in the ``gapped / weakly chaotic''
+        corner: they are local, admit area laws, and serve as clean
+        T1 testbeds;
+  \item critical TFIM and CFTs sit along a ``gapless but structured''
+        line: they exhibit long-range correlations controlled by
+        symmetry and scaling, and bridge towards T2 and entanglement
+        thermodynamics;
+  \item SYK-type models inhabit the ``strongly chaotic'' region:
+        locality is absent or emergent, scrambling is fast, and the
+        dominant IGD phenomenon is complexity growth (T3).
+\end{itemize}
+
+The IGD stack is designed so that all three corners are described
+within a single information--geometric language: the same axioms,
+the same IGD equation, and different coarse-graining regimes.
+
+\section{Roadmap and next steps}
+
+From the perspective of this applications layer, the immediate next
+steps are:
+
+\begin{itemize}
+  \item \textbf{T1 paper (gapped regime):} consolidate the TFIM
+        results---static mutual information, block entropies,
+        dynamical light-cones---into a coherent manuscript that
+        demonstrates T1 in full detail.
+  \item \textbf{Critical / CFT bridge:} complete the CFT/critical note
+        and strengthen the mapping between critical TFIM numerics and
+        CFT entanglement formulas, preparing the ground for T2-style
+        entanglement thermodynamics.
+  \item \textbf{Chaos / T3 upgrade:} refine the SYK sector by
+        implementing a small but genuine Majorana SYK$_4$ model with
+        entanglement and OTOC diagnostics, bringing the toy chaos
+        studies closer to the T3 spacetime theorem.
+  \item \textbf{Unified narrative:} eventually combine these sectors
+        into a single ``Applications and Models'' chapter of a
+        larger IGD monograph, using this v1.0 note as the high-level
+        table of contents for the model landscape.
+\end{itemize}
+
+In this way the IGD applications layer becomes a structured map:
+from gapped to critical to chaotic regimes, all phrased in the same
+information--geometric language and supported by explicit numerical
+simulations.
+\end{document}
