@@ -35,7 +35,7 @@ def run_static(fig_dir="figures", prefix="CFT", c=1.0):
     plt.plot(ell, S)
     plt.xlabel('Interval length ℓ (arbitrary units)')
     plt.ylabel('Entanglement entropy S(ℓ)')
-    plt.title(f'1+1D CFT static entanglement (c={{c}})')
+    plt.title(f'1+1D CFT static entanglement (c={c})')
     plt.tight_layout()
     out = fig_dir / f"{prefix}_Static_Entanglement.png"
     plt.savefig(out)
@@ -51,7 +51,7 @@ def run_dynamic(fig_dir="figures", prefix="CFT", c=1.0):
     plt.plot(t, S)
     plt.xlabel('Time t (arbitrary units)')
     plt.ylabel('Entanglement entropy S_A(t)')
-    plt.title(f'1+1D CFT global quench (interval ℓ={{ell}}, c={{c}})')
+    plt.title(f'1+1D CFT global quench (interval ℓ={ell}, c={c})')
     plt.tight_layout()
     out = fig_dir / f"{prefix}_Quench_Entanglement.png"
     plt.savefig(out)

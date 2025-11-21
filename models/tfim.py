@@ -213,7 +213,7 @@ def run_dynamic(N=8, J=1.0, h=0.5, t_max=6.0, num_t=60, fig_dir="figures", prefi
     plt.plot(times, S_half_t_bits)
     plt.xlabel('Time t')
     plt.ylabel('Half-chain entropy S_A(t) [bits]')
-    plt.title(f'TFIM N={{N}}, J={{J}}, h={{h}}: half-chain entanglement')
+    plt.title(f'TFIM N={N}, J={J}, h={h}: half-chain entanglement')
     plt.tight_layout()
     out_ent = fig_dir / f"{prefix}_Tevo_HalfEntropy_N{N}.png"
     plt.savefig(out_ent)
@@ -224,7 +224,7 @@ def run_dynamic(N=8, J=1.0, h=0.5, t_max=6.0, num_t=60, fig_dir="figures", prefi
     plt.imshow(I_dt_bits, aspect='auto', origin='lower', extent=extent)
     plt.xlabel('Time t')
     plt.ylabel('Distance d')
-    plt.title(f'TFIM N={{N}}, J={{J}}, h={{h}}: I(d,t) [bits]')
+    plt.title(f'TFIM N={N}, J={J}, h={h}: I(d,t) [bits]')
     plt.colorbar(label='I(d,t) [bits]')
     plt.tight_layout()
     out_mi = fig_dir / f"{prefix}_Tevo_MI_Heatmap_N{N}.png"
